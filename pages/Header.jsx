@@ -25,8 +25,8 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 max-w-[1980px] py-2 px-4 m-8 xl:py-10 text-sm text-center items-center md:justify-between lg:px-8 ${
-        scrolled ? "bg-gray-200 shadow-xl" : ""
+      className={`sticky top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-10 text-sm text-center items-center md:justify-between lg:px-8 ${
+        scrolled ? "bg-gray-100 shadow-xl " : ""
       }`}
     >
       <motion.div
@@ -44,7 +44,7 @@ const Header = () => {
         variants={fadeIn("left", 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0 }}
+        viewport={{ once: true, amount: 0 }}
         className="xl:flex justify-center w-full mt-2"
       >
         <Nav

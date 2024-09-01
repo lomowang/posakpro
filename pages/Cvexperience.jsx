@@ -92,14 +92,14 @@ const Cvexperience = ({ item }) => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0 }}
-        className="xl:w-4/5  py-8"
+        className=""
       >
         {exhibitions.map((item, index) => {
           return (
             <section>
-              <ul key={index} className="mt-4">
+              <ul key={index} className="mt-4 list-none ">
                 <p>
-                  ● <span></span>
+                  <span></span>
                   {item.title}
                 </p>
                 <p>{item.enname}</p>

@@ -52,7 +52,7 @@ const Mainexperience = () => {
           />
         </motion.div>
       </div>
-      <div className=" xl:flex xl:m-40  ">
+      <div className=" xl:flex xl:m-40 ">
         <div className="xl:flex flex-col  text-xs">
           <Cvexperience />
         </div>
