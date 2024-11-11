@@ -8,13 +8,13 @@ const Contact = () => {
     <section className="py-8">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <div className="md:flex md:justify-around md:items-start text-justify">
-          <div className="flex-col flex my-auto mx-auto">
-            <h2 className="text-sm font-bold">Posak Jodian</h2>
-            <h2 className="text-sm">posak1987@gmail.com</h2>
+          <div className="flex-col flex my-auto mx-auto ">
+            <h2 className="text-xl font-medium leading-7">Posak Jodian</h2>
+            <h2 className="text-sm  leading-7">posak1987@gmail.com</h2>
 
-            <div className="flex items-center space-x-4 mt-4">
+            <div className="flex items-center space-x-4 mt-4 ">
               <a
-                href="https://www.facebook.com/yourprofile"
+                href="https://www.facebook.com/posakjodian"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800"
@@ -22,7 +22,7 @@ const Contact = () => {
                 <FaFacebook size={24} />
               </a>
               <a
-                href="https://www.instagram.com/yourprofile"
+                href="https://www.instagram.com/posakjodian/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-pink-600 hover:text-pink-800"

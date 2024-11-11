@@ -3,11 +3,10 @@
 @tailwind utilities;
 
 /* globals.css or styles.css */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/adobe-garamond-pro-2");
 
-/* 你可以在这里定义全局样式，使用 Playfair Display 字体 */
 body {
-  font-family: "Playfair Display", serif;
+  font-family: "Adobe Garamond Pro", sans-serif;
 }
 
 /* 隐藏滚动条，但仍然允许滚动 */
@@ -18,4 +17,18 @@ body {
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* 自定義 Swiper 的導航按鈕樣式 */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ff0000; /* 改變導航按鈕的顏色，例如紅色 */
+  width: 40px; /* 改變導航按鈕的寬度 */
+  height: 40px; /* 改變導航按鈕的高度 */
+}
+
+/* 如果您想修改導航按鈕的尺寸或其他屬性，也可以在這裡進行 */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 24px; /* 調整箭頭圖標的大小 */
 }

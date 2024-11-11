@@ -8,12 +8,9 @@ const Text = () => {
       {/* Astronesian Atlas */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
-            We – In between kita and kami #Kami #Kita
-          </h2>
           <ul className="mt-4 space-y-2 ">
             <li>
-              <p className="text-[12px]">
+              <p className="text-[14px]">
                 Nusantara Archive Project: Astronesian Atlas, KEYWORD DICTIONARY
                 OF ASIAN CONTEMPORARY ART, 2022
               </p>
@@ -30,9 +27,9 @@ const Text = () => {
         </div>
         <div className="flex-1">
           <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
-            Astronesian Atlas
+            We – In between kita and kami #Kami #Kita
           </h2>
-          <p className="mt-4 text-[14px] text-justify leading-6">
+          <p className="mt-4 text-[16px] text-justify leading-6">
             The Keyword Dictionary of Asian Contemporary Art is a transnational
             project launched in 2022, by TSAI Ping-Ju and LI Kuei-Pi in Taiwan,
             during the COVID-19 pandemic, which aims to re-organize and
@@ -58,12 +55,9 @@ const Text = () => {
       {/* Lakec and Lakec: A Very Simple River */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
-            Lakec and Lakec: A Very Simple River
-          </h2>
           <ul className="mt-4 space-y-2 ">
             <li>
-              <p className="text-[12px]">
+              <p className="text-[14px]">
                 No Man’s Land ISSUE 50 : The Portal & The Rearview Mirror,
                 September 2021
               </p>
@@ -82,7 +76,7 @@ const Text = () => {
           <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Lakec and Lakec: A Very Simple River
           </h2>
-          <p className="mt-4 text-[14px] text-justify leading-6">
+          <p className="mt-4 text-[16px] text-justify leading-6">
             Lakec，渡河。這個系列的開始是始於我對河流的陌生，以及對自己Pangcah文化的不了解。像是一個不太會游泳的人，因為不知道怎麼游過河，所以想盡辦想要探尋在河周邊的人、事、物，他們是用什麼樣子的方法，或是經過什麼樣的路徑渡過這條河的，慢慢在他們的經驗跟故事之中，我也才能漸漸梳理出自己走向河流的方法。
             <br></br>
             自2018年由打開–當代藝術工作站及「群島資料庫」（Nusantara
@@ -100,12 +94,12 @@ const Text = () => {
       {/* ACT 85. 原民場域．當代轉換：藝術的原民性與困惑的多元性 */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
+          {/* <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Remapping – PaperExhibition
-          </h2>
+          </h2> */}
           <ul className="mt-4 space-y-2 ">
             <li>
-              <p className="text-[12px]">
+              <p className="text-[14px]">
                 curated by Huang Ching-Ing, ACT 85. Indigenous Fields,
                 Contemporary Transformations: Indigeneity in Arts and Confusions
                 in Plurality, April 2021
@@ -123,9 +117,10 @@ const Text = () => {
         </div>
         <div className="flex-1">
           <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
-            ACT 85. 原民場域．當代轉換：藝術的原民性與困惑的多元性
+            {/* ACT 85. 原民場域．當代轉換：藝術的原民性與困惑的多元性 */}
+            Remapping – PaperExhibition
           </h2>
-          <p className="mt-4 text-[14px] text-justify leading-6">
+          <p className="mt-4 text-[16px] text-justify leading-6">
             這個專題的構想，源自於2020年幾個重要的原民當代藝術展演和論壇。首先是呂瑋倫在桃園市原住民族文化會館策劃的「靜寂的盛典：原住民當代藝術中的性別視鏡」三個系列：「迷園」、「她鄉」與「夢所」，以及後續在花蓮文創園區舉辦的論壇「未盡的群像：原住民社群中的性別重影」；然後是年中在屏東美術館盛大開展，由徐文瑞和伊誕．巴瓦瓦隆（Etan
             Pavavalung）策劃的「未來潮：大山地門當代藝術展」以及後續的相關參訪和書寫；最後是11月底在三間屋實驗聚落舉辦的「原民性、當代藝術與人類世論壇」，由張恩滿、蔣偉光和Nakaw
             Putun擔綱發表。
@@ -138,12 +133,12 @@ const Text = () => {
       {/* Remapping */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
+          {/* <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Remapping
-          </h2>
+          </h2> */}
           <ul className="mt-4 space-y-2 ">
             <li>
-              <p className="text-[12px]">
+              <p className="text-[14px]">
                 curated by Huang Ching-Ing, Pulima Link, September 2021
               </p>
             </li>
@@ -161,7 +156,7 @@ const Text = () => {
           <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Remapping
           </h2>
-          <p className="mt-4 text-[14px] text-justify leading-6">
+          <p className="mt-4 text-[16px] text-justify leading-6">
             After the 1990s, contemporary artists who have Indigenous
             backgrounds in Taiwan developed their own practice methods. They
             tried to be rooted again in their own Indigenous community or in a
@@ -186,12 +181,12 @@ const Text = () => {
       {/* Palm Trees, Helicopters, the Boulder, and the Storyteller, */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
+          {/* <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
-          </h2>
+          </h2> */}
           <ul className="mt-4 space-y-2 ">
             <li>
-              <p className="text-[12px]">
+              <p className="text-[14px]">
                 Nusantara Archive Project, No Man’s Land, July 2019
               </p>
             </li>
@@ -209,7 +204,7 @@ const Text = () => {
           <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
           </h2>
-          <p className="mt-4 text-[14px] text-justify leading-6">
+          <p className="mt-4 text-[16px] text-justify leading-6">
             《KANTA
             Portraits馬來西亞—台灣交流計劃》是打開-當代藝術工作站與馬來西亞COAC（半島原住民關懷中心）合作的跨國交流項目，作者以自身原住民處境為鏡，映射彼此被納入異族殖民與拓墾的歷程與交會。這次造訪馬來半島上霹靂州庫內村（Kampung
             Cunex）的Temiar部落、雪蘭莪州Lanjan山旁特姆村的Temuan族人、彭亨州雲彬Jemeri村的耶坤族，及加厘島（Carey）布本村的瑪美里族（Mah

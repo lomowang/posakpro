@@ -9,8 +9,8 @@ const Mainexperience = () => {
     <section>
       <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-8 p-4 m-40">
         <div className="flex-1 ">
-          <h2 className="text-[28px] font-bold ">Posak Jodian</h2>
-          <p className="text-justify text-sm w-3/4 leading-6">
+          <h2 className="text-[28px] font-bold leading-20">Posak Jodian</h2>
+          <p className="text-justify text-sm  leading-6">
             Posak Jodian, an Amis who lives in Taipei. Posak is the given name
             and Jodian is the father’s name. Posak has a background in
             ethnolinguistics and Communication studies. She mainly uses video as
@@ -33,27 +33,9 @@ const Mainexperience = () => {
             Theatre.
           </p>
         </div>
-
-        {/* 图片内容 */}
-        <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0 }}
-          className="w-1/4"
-        >
-          <Image
-            src="/pro/Posak.png"
-            width={240}
-            height={140}
-            alt="Posak Jodian"
-            layout="responsive"
-            objectFit="cover"
-          />
-        </motion.div>
       </div>
       <div className=" xl:flex xl:m-40 ">
-        <div className="xl:flex flex-col  text-xs">
+        <div className="xl:flex flex-col  text-sm">
           <Cvexperience />
         </div>
       </div>

@@ -51,7 +51,7 @@ const Lakecswiper = () => {
               <img
                 src={slide.Image}
                 alt=""
-                className="w-2/3 h-2/3 object-cover bg-center p-2 m-auto"
+                className="w-2/8 h-2/3 object-cover bg-center p-2 m-auto"
               />
             </SwiperSlide>
           )

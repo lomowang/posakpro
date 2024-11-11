@@ -4,6 +4,7 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade"; // 引入淡入淡出效果的样式
 import Image from "next/image";
+import Link from "next/link";
 
 const work = [
   {
@@ -51,7 +52,7 @@ const Simswiper = () => {
               <img
                 src={slide.Image}
                 alt=""
-                className="w-2/3 h-2/3 object-cover bg-center p-2 m-auto"
+                className="w-2/8 h-2/3 object-cover bg-center p-2 m-auto"
               />
             </SwiperSlide>
           )

@@ -1,8 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules"; // 引入 Navigation 模块
 import "swiper/css";
-import "swiper/css/effect-fade"; // 引入淡入淡出效果的样式
+import "swiper/css/effect-fade";
+import "swiper/css/navigation"; // 引入导航样式
 import Image from "next/image";
 
 const work = [
@@ -26,36 +27,36 @@ const work = [
 
 const Projectswiper = () => {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      {/* 导航按钮 */}
+      <div className="swiper-button-prev"></div>
+      <div className="swiper-button-next"></div>
+
       <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
+        slidesPerView={3}
+        spaceBetween={0}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
         loop={true}
-        effect={"fade"} // 使用淡入淡出效果
+        effect={"fade"}
         fadeEffect={{
           crossFade: true,
         }}
-        modules={[Autoplay, EffectFade]} // 引入 EffectFade 模块
+        navigation={true} // 启用导航功能
+        modules={[Autoplay, EffectFade, Navigation]} // 添加 Navigation 模块
         className="heroSwiper"
       >
-        {work.map(
-          (
-            slide,
-            index // 添加 key 属性
-          ) => (
-            <SwiperSlide key={index}>
-              <img
-                src={slide.Image}
-                alt=""
-                className="w-1/2 h-1/2 object-cover bg-center p-2 m-auto"
-              />
-            </SwiperSlide>
-          )
-        )}
+        {work.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={slide.Image}
+              alt={slide.neme}
+              className="w-screen	h-screen object-cover bg-center"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

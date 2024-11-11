@@ -4,7 +4,7 @@ import Projectswiper from "./Projectswiper";
 
 const Hero = () => {
   return (
-    <section className="bg-black">
+    <section className="bg-black w-full h-screen flex justify-center items-center">
       <Projectswiper />
     </section>
   );

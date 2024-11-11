@@ -24,7 +24,7 @@ const exhibitions = [
   },
   {
     title:
-      "2019 Asian Art Biennial:：The Strangers from beyond the Mountain and the Sea",
+      "2019 Asian Art Biennial:The Strangers from beyond the Mountain and the Sea",
   },
   {
     title:
@@ -57,11 +57,12 @@ const exhibitions = [
     title:
       "2022 Misafafahiyan Metamorphosis showed at Solid Art “Ocean and Interpreters”",
   },
+
   {
-    title: "2012 那路很會彎「第三屆原住民藝術工作者駐村計畫聯展」",
-    enname:
+    title:
       "2012 Naruwan-Life finds a way—Taiwan Indigenous Artists Exhibition.",
   },
+
   {
     title:
       "2023 Misafafahiyan Metamorphosis showed at Britto Arts Trust “Ocean and Interpreters” in Dhaka, Bangladesh",
@@ -86,8 +87,22 @@ const exhibitions = [
 
 const Cvexperience = ({ item }) => {
   return (
-    <section className="xl:flex leading-4">
-      <motion.div
+    <section className="leading-4">
+      <div></div>
+      {exhibitions.map((item, index) => {
+        return (
+          <section>
+            <ul key={index} className="mt-4 list-none ">
+              <p>
+                <span></span>
+                {item.title}
+              </p>
+              <p>{item.enname}</p>
+            </ul>
+          </section>
+        );
+      })}
+      {/* <motion.div
         variants={fadeIn("left", 0.8)}
         initial="hidden"
         whileInView="show"
@@ -107,7 +122,7 @@ const Cvexperience = ({ item }) => {
             </section>
           );
         })}
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };

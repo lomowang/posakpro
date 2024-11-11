@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const router = useRouter();
-  const noHeaderPaths = ["/Works"]; // 你不想顯示 Header 的路径
+  // 你不想顯示 Header 的路径
+  const noHeaderPaths = [""];
 
   const shouldShowHeader = !noHeaderPaths.includes(router.pathname);
 

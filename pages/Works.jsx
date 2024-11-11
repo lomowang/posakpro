@@ -1,78 +1,50 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router"; // 导入 useRouter
 import Misafafahiyan from "./workpage/Misafafahiyan";
 import Lakec from "./workpage/Lakec";
 import Simpleriver from "./workpage/Simpleriver";
+import Link from "next/link";
+
+const work = [
+  {
+    Image: "/pro/Lakec_1.png",
+    name: "Lakec",
+    link: "/workpage/Lakec", // 每個作品的鏈接
+  },
+  {
+    Image: "/pro/Misafafahiyan_14.jpeg",
+    name: "Misafafahiyan",
+    link: "/workpage/Misafafahiyan", // 每個作品的鏈接
+  },
+  {
+    Image: "/pro/Simswiper_1.png",
+    name: "Simswiper",
+    link: "/workpage/Simpleriver", // 每個作品的鏈接
+  },
+];
 
 const Works = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const router = useRouter(); // 初始化 useRouter
-
-  const renderContent = () => {
-    switch (selectedOption) {
-      case "option1":
-        return (
-          <div>
-            <Misafafahiyan />
-          </div>
-        );
-      case "option2":
-        return (
-          <div>
-            <Simpleriver />
-          </div>
-        );
-      case "option3":
-        return (
-          <div>
-            <Lakec />
-          </div>
-        );
-      default:
-        return <div> 這邊要不要放甚麼照片</div>;
-    }
-  };
-
   return (
-    <div className="flex h-screen">
-      {/* 左边：回到首页 (占3/12) */}
-      <div className="w-1/4 lg:w-3/12  flex items-center justify-center">
-        <button
-          onClick={() => router.push("/")} // 点击时导航到首页
-          className="text-xl font-bold"
-        >
-          Posak Jodian
-        </button>
-      </div>
-
-      {/* 中间：子画面 (占6/12) */}
-      <div className="w-2/4 lg:w-6/12  overflow-y-auto flex items-center justify-center p-4 hide-scrollbar">
-        <div className="max-h-full w-full">{renderContent()}</div>
-      </div>
-
-      {/* 右边：选项 (占3/12) */}
-      <div className="w-1/4 lg:w-3/12 flex flex-col items-center justify-center space-y-4">
-        <button
-          onClick={() => setSelectedOption("option1")}
-          className="text-xl"
-        >
-          Misafafahiyan
-        </button>
-        <button
-          onClick={() => setSelectedOption("option2")}
-          className="text-xl"
-        >
-          Lakec:A Very Simple River
-        </button>
-        <button
-          onClick={() => setSelectedOption("option3")}
-          className="text-xl"
-        >
-          Lakec
-        </button>
-      </div>
-    </div>
+    <section className="flex flex-wrap justify-center">
+      {work.map((slide, index) => (
+        <div key={index} className="w-1/6 p-2">
+          <Link href={slide.link}>
+            {/* 使用 <Link> 包裹 img 和 p */}
+            <div>
+              <img
+                src={slide.Image}
+                alt={slide.name}
+                className="w-full h-auto object-cover bg-center"
+              />
+              <p className="text-center mt-2 font-light text-xs text-slate-400">
+                {slide.name}
+              </p>
+            </div>
+          </Link>
+        </div>
+      ))}
+    </section>
   );
 };
 
