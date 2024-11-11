@@ -49,9 +49,9 @@ const links = [
 ];
 
 const Nav = ({ containerStyles, listStyles }) => {
-  const [activeLink, setActiveLink] = useState(null); // 追踪当前激活的链接
+  const [activeLink, setActiveLink] = useState(null); // 追蹤當前使用的頁面
 
-  // 处理点击事件
+  // 處理點擊事件
   const handleClick = (id) => {
     setActiveLink(id);
   };
@@ -67,8 +67,8 @@ const Nav = ({ containerStyles, listStyles }) => {
                 activeLink === `link-${link.id}`
                   ? "text-black"
                   : "hover:text-slate-900"
-              }`} // 如果当前链接激活，则显示黑色
-              onClick={() => handleClick(`link-${link.id}`)} // 点击时设置为激活状态
+              }`} // 當前正在使用此頁面 就是黑色
+              onClick={() => handleClick(`link-${link.id}`)} // 點擊時設定使用狀態
             >
               {link.title}
             </Link>
@@ -83,7 +83,7 @@ const Nav = ({ containerStyles, listStyles }) => {
                           activeLink === `sublink-${subLink.id}`
                             ? "text-black"
                             : "hover:text-slate-900"
-                        }`} // 子链接也能根据激活状态改变颜色
+                        }`}
                         onClick={() => handleClick(`sublink-${subLink.id}`)}
                       >
                         {subLink.title}

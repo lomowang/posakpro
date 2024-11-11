@@ -34,10 +34,10 @@ const Contact = () => {
           <div className="flex justify-center mt-8 md:mt-0">
             <Image
               src="/pro/Posak.png"
-              width={380} // 调整图片宽度
-              height={120} // 调整图片高度
+              width={380}
+              height={120}
               alt="Posak Jodian"
-              layout="intrinsic" // 使用 intrinsic layout 确保图片不拉伸
+              layout="intrinsic" // 使用 intrinsic layout 確保圖片不變形
               objectFit="cover"
             />
           </div>

@@ -28,7 +28,7 @@ const work = [
 const Projectswiper = () => {
   return (
     <div className="w-full relative">
-      {/* 导航按钮 */}
+      {/* 導航 */}
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
 
@@ -44,8 +44,8 @@ const Projectswiper = () => {
         fadeEffect={{
           crossFade: true,
         }}
-        navigation={true} // 启用导航功能
-        modules={[Autoplay, EffectFade, Navigation]} // 添加 Navigation 模块
+        navigation={true} // 啟用導航
+        modules={[Autoplay, EffectFade, Navigation]} // 添加 Navigation
         className="heroSwiper"
       >
         {work.map((slide, index) => (
