@@ -5,12 +5,14 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <section className="py-8">
+    <section className="py-8 max-w-screen-xl m-auto">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
         <div className="md:flex md:justify-around md:items-start text-justify">
           <div className="flex-col flex my-auto mx-auto ">
             <h2 className="text-xl font-medium leading-7">Posak Jodian</h2>
-            <h2 className="text-sm  leading-7">posak1987@gmail.com</h2>
+            <h2 className="text-sm  leading-7 py-4 text-gray-400">
+              posak1987@gmail.com
+            </h2>
 
             <div className="flex items-center space-x-4 mt-4 ">
               <a

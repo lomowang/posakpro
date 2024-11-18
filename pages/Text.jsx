@@ -11,8 +11,8 @@ const Text = () => {
           <ul className="mt-4 space-y-2 ">
             <li>
               <p className="text-[14px]">
-                Nusantara Archive Project: Astronesian Atlas, KEYWORD DICTIONARY
-                OF ASIAN CONTEMPORARY ART, 2022
+                Nusantara Archive Project: Astronesian Atlas | KEYWORD
+                DICTIONARY OF ASIAN CONTEMPORARY ART | 2022
               </p>
             </li>
             <li>
@@ -56,9 +56,18 @@ const Text = () => {
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
         <div className="flex-1 my-auto ml-auto">
           <ul className="mt-4 space-y-2 ">
+            <Image
+              src="/pro/Cilifenam.jpeg"
+              width={380}
+              height={120}
+              alt="Cilifenam"
+              layout="intrinsic" // 使用 intrinsic layout 確保圖片不變形
+              objectFit="cover"
+            />
+
             <li>
               <p className="text-[14px]">
-                No Man’s Land ISSUE 50 : The Portal & The Rearview Mirror,
+                No Man’s Land | ISSUE 50 : The Portal & The Rearview Mirror |
                 September 2021
               </p>
             </li>
@@ -137,9 +146,18 @@ const Text = () => {
             Remapping
           </h2> */}
           <ul className="mt-4 space-y-2 ">
+            <Image
+              src="/pro/Remapping.jpeg"
+              width={380}
+              height={120}
+              alt="Remapping"
+              layout="intrinsic" // 使用 intrinsic layout 確保圖片不變形
+              objectFit="cover"
+            />
+
             <li>
               <p className="text-[14px]">
-                curated by Huang Ching-Ing, Pulima Link, September 2021
+                curated by Huang Ching-Ing | Pulima Link | September 2021
               </p>
             </li>
             <li>
@@ -185,9 +203,17 @@ const Text = () => {
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
           </h2> */}
           <ul className="mt-4 space-y-2 ">
+            <Image
+              src="/pro/PalmTrees.jpg"
+              width={380}
+              height={120}
+              alt="PalmTrees"
+              layout="intrinsic" // 使用 intrinsic layout 確保圖片不變形
+              objectFit="cover"
+            />
             <li>
               <p className="text-[14px]">
-                Nusantara Archive Project, No Man’s Land, July 2019
+                Nusantara Archive Project | No Man’s Land | July 2019
               </p>
             </li>
             <li>

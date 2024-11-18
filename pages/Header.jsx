@@ -27,12 +27,12 @@ const Header = () => {
     <header
       className={` top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-10 text-sm text-center items-center md:justify-between lg:px-8 `}
     >
-      <h1 className="text-center font-bold">
+      <h1 className="text-center  font-medium">
         <Link href="/">Posak Jodian</Link>
       </h1>
       <Nav
         containerStyles="xl:flex items-center hidden justify-center "
-        listStyles="flex gap-2 text-sm top-20 leading-8 text-gray-300 "
+        listStyles="flex gap-2 text-sm top-20 leading-8 text-gray-400 "
       />
       <motion.div
         variants={fadeIn("left", 0.2)}

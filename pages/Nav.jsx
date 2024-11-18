@@ -5,18 +5,18 @@ import { useState } from "react";
 const links = [
   {
     id: 1,
-    title: "News",
+    title: "NEWS",
     url: "/UpcomingEvents",
   },
   {
     id: 2,
-    title: "Press",
+    title: "PRESS",
     url: "/Press",
   },
   {
     id: 3,
-    title: "Work",
-    url: "/Works",
+    title: "WORK",
+    url: "/Work",
     subLinks: [
       {
         id: 1,
@@ -33,17 +33,17 @@ const links = [
   },
   {
     id: 4,
-    title: "Text/Media",
+    title: "TEXT/MEDIA",
     url: "/Text",
   },
   {
     id: 5,
-    title: "About",
-    url: "/Mainexperience",
+    title: "ABOUT",
+    url: "/About",
   },
   {
     id: 7,
-    title: "Contact",
+    title: "CONTACT",
     url: "/Contact",
   },
 ];

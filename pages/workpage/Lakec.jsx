@@ -3,11 +3,13 @@ import Lakecswiper from "./Lakecswiper";
 
 function Lakec() {
   return (
-    <section>
+    <section className="max-w-screen-xl m-auto">
       <Lakecswiper />
       <div className="flex p-10 justify-center text-justify	">
         <div className="w-full m-2 ">
-          <h2 className="text-lg font-bold">Posak Jodian | 2018 | 20’34”</h2>
+          <h2 className="text-base font-bold leading-8">
+            Posak Jodian | 2018 | 20’34”
+          </h2>
           <br></br>
           <p className="leading-8 text-sm">
             <strong>Lakec</strong> is the inspiration from the memory of Posak’s

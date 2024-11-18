@@ -3,12 +3,13 @@ import Misaswiper from "./Misaswiper";
 
 function Misafafahiyan() {
   return (
-    <section>
+    <section className="max-w-screen-xl m-auto">
       <Misaswiper />
       <div className="flex p-10 justify-center text-justify	">
         <div className="w-full m-2 ">
-          <h2 className="text-base font-bold leading-8">Posak Jodian, 2022</h2>
-          <p className="text-sm text-gray-500 font-bold">Taiwan,16’17</p>
+          <h2 className="text-base font-bold leading-8">
+            Posak Jodian | 2022 | Taiwan | 16’17”
+          </h2>
           <br></br>
           <p className="border-b-2"></p>
           <p className="leading-8 text-sm">

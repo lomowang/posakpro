@@ -19,16 +19,19 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-/* 自定義 Swiper 的導航按鈕樣式 */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #ff0000; /* 改變導航按鈕的顏色，例如紅色 */
-  width: 40px; /* 改變導航按鈕的寬度 */
-  height: 40px; /* 改變導航按鈕的高度 */
+div.swiper-button-prev,
+div.swiper-button-next {
+  width: 30px; /* 設置按鈕寬度 */
+  height: 30px; /* 設置按鈕高度 */
+  color: #ffffff; /* 設置顏色 */
+  background-color: rgba(0, 0, 0, 0.5); /* 設置背景顏色 */
+  border-radius: 50%; /* 設置圓形 */
+  padding: 5px; /* 設置內邊距 */
+  z-index: 10; /* 確保顯示在頂層 */
 }
 
-/* 如果您想修改導航按鈕的尺寸或其他屬性，也可以在這裡進行 */
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 24px; /* 調整箭頭圖標的大小 */
+/* 縮小箭頭圖標 */
+div.swiper-button-prev::after,
+div.swiper-button-next::after {
+  font-size: 16px; /* 縮小箭頭圖標大小 */
 }

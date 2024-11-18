@@ -1,9 +1,5 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/router"; // 导入 useRouter
-import Misafafahiyan from "./workpage/Misafafahiyan";
-import Lakec from "./workpage/Lakec";
-import Simpleriver from "./workpage/Simpleriver";
 import Link from "next/link";
 
 const work = [
@@ -24,7 +20,7 @@ const work = [
   },
 ];
 
-const Works = () => {
+const Work = () => {
   return (
     <section className="flex flex-wrap justify-center">
       {work.map((slide, index) => (
@@ -48,4 +44,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Work;

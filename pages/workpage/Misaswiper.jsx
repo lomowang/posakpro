@@ -9,15 +9,15 @@ import "swiper/css/thumbs";
 const work = [
   {
     Image: "/pro/Misafafahiyan_1.jpeg",
-    neme: "Misafafahiyan",
+    name: "Misafafahiyan", // 修正錯字 neme -> name
   },
   {
     Image: "/pro/Misafafahiyan_14.jpeg",
-    neme: "Misafafahiyan",
+    name: "Misafafahiyan",
   },
   {
     Image: "/pro/Misafafahiyan_4.jpeg",
-    neme: "Misafafahiyan",
+    name: "Misafafahiyan",
   },
 ];
 
@@ -28,28 +28,31 @@ const Misaswiper = () => {
     <div className="w-full">
       {/* 主 Swiper */}
       <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
+        slidesPerView={1} // 一次顯示一張幻燈片
+        spaceBetween={10} // 幻燈片之間的間距設置為 10px
         autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
+          delay: 2500, // 每張幻燈片停留 2500 毫秒
+          disableOnInteraction: false, // 使用者交互後不禁用自動播放
         }}
-        loop={true}
-        effect={"fade"}
+        loop={true} // 啟用無限循環播放
+        effect={"fade"} // 使用淡入淡出效果
         fadeEffect={{
-          crossFade: true,
+          crossFade: true, // 啟用交叉淡入淡出效果
         }}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[Autoplay, EffectFade, Navigation, Thumbs]}
+        navigation={true} // 啟用導航按鈕
+        thumbs={{ swiper: thumbsSwiper }} // 與縮略圖 Swiper 連動
+        modules={[Autoplay, EffectFade, Navigation, Thumbs]} // 添加 Autoplay, EffectFade, Navigation 和 Thumbs 模塊
         className="heroSwiper"
+        onSlideChange={(swiper) =>
+          thumbsSwiper && thumbsSwiper.slideTo(swiper.activeIndex)
+        } // 當主 Swiper 更改時，縮略圖也更新
       >
         {work.map((slide, index) => (
           <SwiperSlide key={index}>
             <img
               src={slide.Image}
-              alt=""
-              className="w-2/8 h-2/3 object-cover bg-center p-2 m-auto"
+              alt={slide.name} // 為 img 元素添加描述性文字
+              className="w-full max-w-xl h-auto object-contain bg-center p-2 m-auto" // 調整圖片尺寸，添加 max-w-xl 和 h-auto 確保圖片不會過大且保持比例
             />
           </SwiperSlide>
         ))}
@@ -57,24 +60,27 @@ const Misaswiper = () => {
 
       {/* 縮略圖 Swiper */}
       <Swiper
-        onSwiper={setThumbsSwiper} // 設定縮略圖 Swiper 實例
-        spaceBetween={10}
-        slidesPerView={3}
-        freeMode={false} // 關閉 freeMode，使得縮略圖保持同步
-        watchSlidesProgress={true}
-        modules={[Thumbs]}
-        className="thumbSwiper mt-4"
+        onSwiper={setThumbsSwiper} // 設定縮略圖 Swiper 實例，與主 Swiper 連動
+        spaceBetween={2} // 幻燈片之間的間距設置為 2px，進一步減少間距使縮略圖不過於分散
+        slidesPerView={3} // 一次顯示三個縮略圖
+        freeMode={true} // 開啟 freeMode，使縮略圖自由滑動
+        watchSlidesProgress={true} // 觀察縮略圖進度
+        watchSlidesVisibility={true} // 觀察縮略圖的可見性，確保同步更新
+        modules={[Thumbs]} // 添加 Thumbs 模塊
+        className="thumbSwiper mt-4  "
+        style={{ width: "800px m-auto" }}
       >
         {work.map((slide, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide
+            key={index}
+            onClick={() => thumbsSwiper && thumbsSwiper.slideTo(index)}
+          >
+            {" "}
+            {/* 點擊縮略圖後更新主 Swiper */}
             <img
               src={slide.Image}
-              alt=""
-              className={`w-full h-20 object-cover p-1 m-auto ${
-                thumbsSwiper && thumbsSwiper.activeIndex === index // 確保 thumbsSwiper 不為 null
-                  ? "opacity-100"
-                  : "opacity-50 grayscale"
-              }`}
+              alt={slide.name} // 為縮略圖添加描述性文字
+              className="w-[180px] h-auto border-2  cursor-pointer "
             />
           </SwiperSlide>
         ))}
@@ -82,4 +88,5 @@ const Misaswiper = () => {
     </div>
   );
 };
+
 export default Misaswiper;

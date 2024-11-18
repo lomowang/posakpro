@@ -1,12 +1,9 @@
-import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/variants";
 import Cvexperience from "./Cvexperience";
 
-const Mainexperience = () => {
+const About = () => {
   return (
-    <section>
+    <section className="max-w-screen-xl m-auto">
       <div className="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-8 p-4 m-40">
         <div className="flex-1 ">
           <h2 className="text-[28px] font-bold leading-20">Posak Jodian</h2>
@@ -43,4 +40,4 @@ const Mainexperience = () => {
   );
 };
 
-export default Mainexperience;
+export default About;

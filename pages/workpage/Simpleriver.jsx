@@ -3,12 +3,12 @@ import Simswiper from "./Simswiper";
 
 function Simpleriver() {
   return (
-    <section>
+    <section className="max-w-screen-xl m-auto">
       <Simswiper />
 
       <div className="flex p-10 justify-center text-justify	">
         <div className="w-full m-2 ">
-          <h2 className="text-lg font-bold">
+          <h2 className="text-base font-bold leading-8">
             Posak Jodian | 2020 | Taiwan | 14’32”
           </h2>
           <br></br>
