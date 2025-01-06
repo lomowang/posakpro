@@ -7,7 +7,7 @@ const Text = () => {
     <section className="flex flex-col space-y-16 p-4 m-8 lg:m-40">
       {/* Astronesian Atlas */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 my-auto ml-auto">
+        <div className="flex-1 flex flex-col items-center lg:items-start my-auto">
           <ul className="mt-4 space-y-2 ">
             <li>
               <p className="text-[14px]">
@@ -54,7 +54,7 @@ const Text = () => {
 
       {/* Lakec and Lakec: A Very Simple River */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 my-auto ml-auto">
+        <div className="flex-1 flex flex-col items-center lg:items-start my-auto">
           <ul className="mt-4 space-y-2 ">
             <Image
               src="/pro/Cilifenam.jpeg"
@@ -141,7 +141,7 @@ const Text = () => {
 
       {/* Remapping */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 my-auto ml-auto">
+        <div className="flex-1 flex flex-col items-center lg:items-start my-auto">
           {/* <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Remapping
           </h2> */}
@@ -198,7 +198,7 @@ const Text = () => {
 
       {/* Palm Trees, Helicopters, the Boulder, and the Storyteller, */}
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start leading-8 space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 my-auto ml-auto">
+        <div className="flex-1 flex flex-col items-center lg:items-start my-auto">
           {/* <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
           </h2> */}
@@ -227,7 +227,7 @@ const Text = () => {
           </ul>
         </div>
         <div className="flex-1">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
+          <h2 className="font-bold xl:text-2xl text-center lg:text-center leading-8">
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
           </h2>
           <p className="mt-4 text-[16px] text-justify leading-6">

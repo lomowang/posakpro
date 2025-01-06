@@ -34,15 +34,9 @@ const Header = () => {
         containerStyles="xl:flex items-center hidden justify-center "
         listStyles="flex gap-2 text-sm top-20 leading-8 text-gray-400 "
       />
-      <motion.div
-        variants={fadeIn("left", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0 }}
-        className="xl:hidden"
-      >
+      <div className="xl:hidden">
         <MobileNav />
-      </motion.div>
+      </div>
     </header>
   );
 };

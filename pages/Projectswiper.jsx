@@ -26,42 +26,48 @@ const work = [
 
 const Projectswiper = () => {
   return (
-    <div className="w-full relative">
-      {/* 導航 */}
+    <div className="w-full h-screen relative">
+      {/* 導航按鈕 */}
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
 
       <Swiper
-        slidesPerView={3} // 一次顯示 3 個幻燈片
-        spaceBetween={0} // 幻燈片之間的間距設置為 0
+        slidesPerView={1}
+        spaceBetween={0}
         autoplay={{
-          delay: 2500, // 每個幻燈片停留 2500 毫秒
-          disableOnInteraction: false, // 使用者交互後不禁用自動播放
+          delay: 2500,
+          disableOnInteraction: false,
         }}
-        loop={true} // 啟用無限循環
-        effect={"fade"} // 使用淡入淡出效果
+        loop={true}
+        effect={"fade"}
         fadeEffect={{
-          crossFade: true, // 啟用交叉淡入淡出效果
+          crossFade: true,
         }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        modules={[Autoplay, EffectFade, Navigation]} // 添加 Navigation
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          1024: { slidesPerView: 1 },
+          1280: { slidesPerView: 1 },
+        }}
+        modules={[Autoplay, EffectFade, Navigation]}
         className="heroSwiper"
       >
         {work.map((slide, index) => (
           <SwiperSlide key={index}>
             <Link href={slide.url}>
-              <div className="relative w-full h-full cursor-pointer">
+              {/* RWD */}
+              <div className="relative w-full h-[60vh] md:h-[80vh] lg:h-screen cursor-pointer">
                 <img
                   src={slide.Image}
                   alt={slide.name}
-                  className="w-screen h-screen object-cover bg-center"
+                  className="w-full h-full object-cover"
                 />
-                {/* 添加主題名稱 */}
-                <div className="absolute bottom-2 left-10 bg-opacity-50 text-white p-6 rounded">
-                  <h3 className="text-[18px] tracking-wider font-bold">
+                {/* 主題名稱 */}
+                <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white px-4 py-2 rounded">
+                  <h3 className="text-[16px] md:text-[18px] lg:text-[18px] tracking-wide font-semibold">
                     {slide.name}
                   </h3>
                 </div>

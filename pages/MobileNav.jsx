@@ -8,7 +8,7 @@ const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu size={36} className="text-black" />
+        <Menu size={36} className="text-black fixed top-4 right-4" />
       </SheetTrigger>
       <SheetContent side="left">
         <div className="flex flex-col justify-around h-full p-4">

@@ -6,7 +6,7 @@ const links = [
   {
     id: 1,
     title: "NEWS",
-    url: "/UpcomingEvents",
+    url: "/News",
   },
   {
     id: 2,

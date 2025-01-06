@@ -34,7 +34,7 @@ const exhibitions = [
   },
   {
     title:
-      "2021 Lakec project published on ACT 85. Indigenous Fields, Contemporary Transformations: Indigeneity in Arts and Confusions in Plurality, in the “Remapping- Paper Exhibition",
+      "2021 Lakec project published on ACT 85. Indigenous Fields, Contemporary Transformations: Indigeneity in Arts and Confusions in Plurality, in the “Remapping-Paper Exhibition",
   },
   {
     title: "2021 Lakec project published on Pulima Link “Remapping”",
@@ -55,12 +55,10 @@ const exhibitions = [
     title:
       "2022 Misafafahiyan Metamorphosis showed at Solid Art “Ocean and Interpreters”",
   },
-
   {
     title:
       "2012 Naruwan-Life finds a way—Taiwan Indigenous Artists Exhibition.",
   },
-
   {
     title:
       "2023 Misafafahiyan Metamorphosis showed at Britto Arts Trust “Ocean and Interpreters” in Dhaka, Bangladesh",
@@ -83,44 +81,17 @@ const exhibitions = [
   },
 ];
 
-const Cvexperience = ({ item }) => {
+const Cvexperience = () => {
   return (
-    <section className="leading-4">
-      <div></div>
-      {exhibitions.map((item, index) => {
-        return (
-          <section>
-            <ul key={index} className="mt-4 list-none ">
-              <p>
-                <span></span>
-                {item.title}
-              </p>
-              <p>{item.enname}</p>
-            </ul>
-          </section>
-        );
-      })}
-      {/* <motion.div
-        variants={fadeIn("left", 0.8)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0 }}
-        className=""
-      >
-        {exhibitions.map((item, index) => {
-          return (
-            <section>
-              <ul key={index} className="mt-4 list-none ">
-                <p>
-                  <span></span>
-                  {item.title}
-                </p>
-                <p>{item.enname}</p>
-              </ul>
-            </section>
-          );
-        })}
-      </motion.div> */}
+    <section className="leading-6 mt-8">
+      <h2 className="text-xl font-bold mb-4">Exhibitions</h2>
+      <ul className="space-y-4">
+        {exhibitions.map((item, index) => (
+          <li key={index} className="text-sm text-justify leading-relaxed">
+            {item.title}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };
