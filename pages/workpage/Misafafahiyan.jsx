@@ -13,7 +13,7 @@ function Misafafahiyan() {
           <br></br>
           <p className="border-b-2"></p>
           <p className="leading-8 text-sm">
-            <strong>Misafafahiyan</strong> Metamorphosis focuses on Hao Hao, a
+            <strong>Misafafahiyan Metamorphosis</strong> focuses on Hao Hao, a
             70-years-old Amis trans performer living in Fata’an, an Amis tribe
             of Taiwan’s indigenous peoples. The work includes a 16-minutes video
             and three photo printing puzzles. In the popular style of karaoke

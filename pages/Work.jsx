@@ -10,12 +10,12 @@ const work = [
   },
   {
     Image: "/pro/Misafafahiyan_14.jpeg",
-    name: "Misafafahiyan",
+    name: "Misafafahiyan Metamorphosi",
     link: "/workpage/Misafafahiyan", // 每個作品的鏈接
   },
   {
     Image: "/pro/Simswiper_1.png",
-    name: "Simswiper",
+    name: "Lakec:A Very Simple River",
     link: "/workpage/Simpleriver", // 每個作品的鏈接
   },
 ];

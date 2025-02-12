@@ -27,7 +27,7 @@ const Header = () => {
     <header
       className={` top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-10 text-sm text-center items-center md:justify-between lg:px-8 `}
     >
-      <h1 className="text-center  font-medium">
+      <h1 className="text-center  font-bold text-[24px]">
         <Link href="/">Posak Jodian</Link>
       </h1>
       <Nav

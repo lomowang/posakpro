@@ -12,6 +12,9 @@ function Simpleriver() {
             Posak Jodian | 2020 | Taiwan | 14’32”
           </h2>
           <br></br>
+          <p className="pb-2 font-bold text-[18px]">
+            Lakec:A Very Simple River
+          </p>
           <p className="leading-8 text-sm">
             Posak Jodian’s first work about the Malay Peninsula. Through the
             “writing" of the lens to capture the essence of the river. This work

@@ -227,7 +227,7 @@ const Text = () => {
           </ul>
         </div>
         <div className="flex-1">
-          <h2 className="font-bold xl:text-2xl text-center lg:text-center leading-8">
+          <h2 className="font-bold xl:text-2xl text-center lg:text-left leading-8">
             Palm Trees, Helicopters, the Boulder, and the Storyteller,
           </h2>
           <p className="mt-4 text-[16px] text-justify leading-6">
