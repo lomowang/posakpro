@@ -26,7 +26,7 @@ const work = [
 
 const Projectswiper = () => {
   return (
-    <div className="w-full h-screen relative">
+    <div className="w-full h-full relative overflow-hidden">
       {/* 導航按鈕 */}
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
@@ -58,8 +58,7 @@ const Projectswiper = () => {
         {work.map((slide, index) => (
           <SwiperSlide key={index}>
             <Link href={slide.url}>
-              {/* RWD */}
-              <div className="relative w-full h-[60vh] md:h-[80vh] lg:h-screen cursor-pointer">
+              <div className="relative w-full h-full cursor-pointer overflow-hidden">
                 <img
                   src={slide.Image}
                   alt={slide.name}

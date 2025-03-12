@@ -24,9 +24,7 @@ const Header = () => {
   return (
     <header
       className={`top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-10 text-sm text-center md:justify-between lg:px-8 ${
-        scrolled
-          ? "bg-white shadow-md transition-all duration-300"
-          : "bg-transparent"
+        scrolled ? "bg-white transition-all duration-300" : "bg-transparent"
       }`}
     >
       <h1 className="text-center font-bold text-[24px]">

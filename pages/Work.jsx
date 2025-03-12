@@ -5,17 +5,17 @@ import Link from "next/link";
 const work = [
   {
     Image: "/pro/Lakec_1.png",
-    name: "Lakec",
+    name: " Lakec",
     link: "/workpage/Lakec", // 每個作品的鏈接
   },
   {
     Image: "/pro/Misafafahiyan_14.jpeg",
-    name: "Misafafahiyan Metamorphosi",
+    name: "Misafafahiyan Metamorphosis",
     link: "/workpage/Misafafahiyan", // 每個作品的鏈接
   },
   {
     Image: "/pro/Simswiper_1.png",
-    name: "Lakec:A Very Simple River",
+    name: "Lakec: A Very Simple River",
     link: "/workpage/Simpleriver", // 每個作品的鏈接
   },
 ];
