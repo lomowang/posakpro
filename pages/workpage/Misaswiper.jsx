@@ -9,7 +9,7 @@ import "swiper/css/thumbs";
 const work = [
   {
     Image: "/pro/Misafafahiyan_1.jpeg",
-    name: "Misafafahiyan", // 修正錯字 neme -> name
+    name: "Misafafahiyan", //
   },
   {
     Image: "/pro/Misafafahiyan_14.jpeg",
@@ -67,7 +67,7 @@ const Misaswiper = () => {
         watchSlidesProgress={true} // 觀察縮略圖進度
         watchSlidesVisibility={true} // 觀察縮略圖的可見性，確保同步更新
         modules={[Thumbs]} // 添加 Thumbs 模塊
-        className="thumbSwiper mt-4  "
+        className="thumbSwiper mt-2"
         style={{ width: "800px m-auto" }}
       >
         {work.map((slide, index) => (
@@ -75,12 +75,11 @@ const Misaswiper = () => {
             key={index}
             onClick={() => thumbsSwiper && thumbsSwiper.slideTo(index)}
           >
-            {" "}
             {/* 點擊縮略圖後更新主 Swiper */}
             <img
               src={slide.Image}
               alt={slide.name} // 為縮略圖添加描述性文字
-              className="w-[180px] h-auto border-2  cursor-pointer "
+              className="w-full max-w-xl h-auto object-contain p-2 mx-auto"
             />
           </SwiperSlide>
         ))}

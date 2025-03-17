@@ -24,7 +24,7 @@ const Work = () => {
   return (
     <section className="flex flex-wrap justify-center">
       {work.map((slide, index) => (
-        <div key={index} className="w-full xl:w-1/6 p-2">
+        <div key={index} className="w-full xl:w-1/3 p-2">
           <Link href={slide.link}>
             <div className="overflow-hidden">
               <img

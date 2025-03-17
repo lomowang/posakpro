@@ -41,11 +41,6 @@ const links = [
     title: "ABOUT",
     url: "/About",
   },
-  {
-    id: 7,
-    title: "CONTACT",
-    url: "/Contact",
-  },
 ];
 
 const Nav = ({ containerStyles, listStyles }) => {

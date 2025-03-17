@@ -1,5 +1,7 @@
 import React from "react";
 import Cvexperience from "./Cvexperience";
+import Image from "next/image";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const About = () => {
   return (
@@ -8,7 +10,7 @@ const About = () => {
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-8 mt-16 lg:mt-40">
         <div className="flex-1">
           <h2 className="text-[28px] font-bold leading-tight">Posak Jodian</h2>
-          <p className="text-justify text-sm leading-6 mt-4">
+          <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
             Posak Jodian, an Amis who lives in Taipei. Posak is the given name
             and Jodian is the father’s name. Posak has a background in
             ethnolinguistics and Communication studies. She mainly uses video as
@@ -20,7 +22,7 @@ const About = () => {
             gaps of cities. Trying to use the ethnic and cultural actions as a
             fulcrum to open the boundaries between identity and recognition.
           </p>
-          <p className="text-justify text-sm leading-6 mt-4">
+          <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
             Posak’s works can be seen in various types of forms and media:
             <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
             “PETAMU Project”,
@@ -35,13 +37,45 @@ const About = () => {
             Theatre.
           </p>
         </div>
+        <Image
+          src="/pro/Posak.png"
+          width={380}
+          height={120}
+          alt="Posak Jodian"
+          className="rounded-lg mt-4"
+          layout="intrinsic "
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <div className="flex flex-col items-center md:items-start text-center md:text-left my-auto">
+        <p className="text-sm leading-7 py-4 text-gray-400">
+          posak1987@gmail.com
+        </p>
+        <div className="flex items-center space-x-4 mt-4">
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/posakjodian"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800"
+          >
+            <FaFacebook size={24} />
+          </a>
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/posakjodian/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-pink-600 hover:text-pink-800"
+          >
+            <FaInstagram size={24} />
+          </a>
+        </div>
       </div>
 
       {/* 履歷展示 */}
-      <div className="flex flex-col xl:flex-row xl:mt-40 mt-16">
-        <div className="flex flex-col text-sm">
-          <Cvexperience />
-        </div>
+      <div className="xl:mt-40 mt-16">
+        <Cvexperience />
       </div>
     </section>
   );

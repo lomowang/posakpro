@@ -5,13 +5,13 @@ function Lakec() {
   return (
     <section className="max-w-screen-xl m-auto">
       <Lakecswiper />
-      <div className="flex p-10 justify-center text-justify	">
+      <div className="flex p-6 justify-center text-justify	">
         <div className="w-full m-2 ">
-          <h2 className="text-base font-bold leading-8">
+          <h2 className="leading-8 xl:text-sm text-[14px] text-gray-700">
             Posak Jodian | 2018 | 20’34”
           </h2>
-          <br></br>
-          <p className="leading-8 text-sm">
+          <p className="border-b-2 mt-2"></p>
+          <p className="text-[16px] leading-[40px]">
             <strong>Lakec</strong> is the inspiration from the memory of Posak’s
             childhood memories of the Amis people who live by the water, and her
             younger brother who comes to work in Taipei from her hometown. It

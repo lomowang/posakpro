@@ -84,7 +84,7 @@ const Simswiper = () => {
             <img
               src={slide.Image}
               alt={slide.name} // 為縮略圖添加描述性文字
-              className="w-[180px] h-auto border-2  cursor-pointer "
+              className="w-full max-w-xl h-auto object-contain p-2 mx-auto"
             />
           </SwiperSlide>
         ))}
