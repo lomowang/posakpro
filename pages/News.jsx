@@ -5,7 +5,7 @@ const News = () => {
   const exhibitions = [
     {
       title:
-        "一四九海浬的時間：抵抗遺忘（Duration of 149 Sea Ｍiles: The struggle of Memory against Forgetting）",
+        "一四九海浬的時間：抵抗遺忘(Duration of 149 Sea Miles: The struggle of Memory against Forgetting)",
       dates: "May 17 – Sep 21, 2025",
       location: "國家人權博物館 白色恐怖綠島紀念園區",
       artists: [
