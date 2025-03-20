@@ -1,21 +1,22 @@
 import { Inter } from "next/font/google";
 import "../app/globals.css";
 import Header from "@/pages/Header";
+import Footer from "@/components/ui/Footer";
 import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const router = useRouter();
-  // 你不想顯示 Header 的路径
-  const noHeaderPaths = [""];
+  const noHeaderPaths = [""]; // 避免 "s" 錯誤
 
   const shouldShowHeader = !noHeaderPaths.includes(router.pathname);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       {shouldShowHeader && <Header />}
-      {children}
-    </>
+      <main className="flex-grow">{children}</main>
+      <Footer />
+    </div>
   );
 }
