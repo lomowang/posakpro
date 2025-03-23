@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import "../app/globals.css"; // 確保全局樣式文件被最早引入
+import "../app/globals.css";
 
 export default function MyApp({ Component, pageProps }) {
   return (

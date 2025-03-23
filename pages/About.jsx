@@ -30,13 +30,17 @@ const About = () => {
 
           <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
             Posak’s works can be seen in various types of forms and media:
+            <br />
             <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
             “PETAMU Project”,
+            <br />
             <em> Lakec: A Very Simple River</em> (2020) at the Taitung Art
             Museum “Another Continent”,
+            <br />
             <em> Lakec</em> project was showcased at ACT 85, Indigenous Fields,
             Contemporary Transformations: Indigeneity in Arts and Confusions in
             Plurality, in the “Remapping- Paper Exhibition" (2021),
+            <br />
             <em> Misafafahiyan Metamorphosis</em> at Solid Art “Ocean and
             Interpreters" (2022). She is also a member of OCAC (Open
             Contemporary Art Center), PMS, Halfway Cafe and Taiwan Haibizi Tent
