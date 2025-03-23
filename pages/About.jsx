@@ -5,11 +5,16 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const About = () => {
   return (
-    <section className="max-w-screen-xl mx-auto p-4">
-      {/* 個人介紹 */}
-      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-8 mt-16 lg:mt-40">
+    <section className="max-w-screen-xl mx-auto px-4 py-12">
+      {/* ⬆️ 統一 padding，手機與桌機都舒適 */}
+
+      {/* 🧑‍🎨 個人介紹區塊 */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mt-16 lg:mt-40">
+        {/* 左邊：文字區塊 */}
         <div className="flex-1">
-          <h2 className="text-[28px] font-bold leading-tight">Posak Jodian</h2>
+          <h2 className="text-2xl font-bold leading-tight">Posak Jodian</h2>
+
+          {/* 介紹段落 */}
           <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
             Posak Jodian, an Amis who lives in Taipei. Posak is the given name
             and Jodian is the father’s name. Posak has a background in
@@ -22,6 +27,7 @@ const About = () => {
             gaps of cities. Trying to use the ethnic and cultural actions as a
             fulcrum to open the boundaries between identity and recognition.
           </p>
+
           <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
             Posak’s works can be seen in various types of forms and media:
             <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
@@ -37,44 +43,45 @@ const About = () => {
             Theatre.
           </p>
         </div>
-        <Image
-          src="/pro/Posak.png"
-          width={380}
-          height={120}
-          alt="Posak Jodian"
-          className="rounded-lg mt-4"
-          layout="intrinsic "
-          style={{ objectFit: "cover" }}
-        />
+
+        {/* 右邊：圖片 */}
+        <div className="w-full max-w-sm lg:w-auto">
+          <Image
+            src="/pro/Posak.png"
+            alt="Posak Jodian"
+            width={380}
+            height={500}
+            className="rounded-lg object-cover"
+            priority
+          />
+        </div>
       </div>
-      <div className="flex flex-col items-center md:items-start text-center md:text-left my-auto">
-        <p className="text-sm leading-7 py-4 text-gray-400">
-          posak1987@gmail.com
-        </p>
+
+      {/* 📧 聯絡方式與社群連結 */}
+      <div className="flex flex-col items-center md:items-start text-center md:text-left mt-12">
+        <p className="text-sm text-gray-500">posak1987@gmail.com</p>
         <div className="flex items-center space-x-4 mt-4">
-          {/* Facebook */}
           <a
             href="https://www.facebook.com/posakjodian"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800"
+            className="text-blue-600 hover:text-blue-800 transition-colors"
           >
             <FaFacebook size={24} />
           </a>
-          {/* Instagram */}
           <a
             href="https://www.instagram.com/posakjodian/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-pink-600 hover:text-pink-800"
+            className="text-pink-600 hover:text-pink-800 transition-colors"
           >
             <FaInstagram size={24} />
           </a>
         </div>
       </div>
 
-      {/* 履歷展示 */}
-      <div className="xl:mt-40 mt-16">
+      {/* 📝 履歷區塊 */}
+      <div className="mt-20 lg:mt-40">
         <Cvexperience />
       </div>
     </section>

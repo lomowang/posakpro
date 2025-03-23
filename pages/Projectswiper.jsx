@@ -5,7 +5,9 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
+// ✅ 圖片資料陣列
 const work = [
   {
     Image: "/pro/river4.png",
@@ -55,38 +57,46 @@ const work = [
 ];
 
 const Projectswiper = () => {
+  // ✅ RWD 判斷：手機 / 平板 / 桌機
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // 偵測螢幕大小
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // 小於 768px (手機模式)
-      setIsDesktop(window.innerWidth >= 1024); // 1024px 以上 (桌機模式)
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1024);
+      setIsDesktop(width >= 1024);
     };
 
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
-
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // **手機模式時，只取前三張圖片**
+  // ✅ 手機只顯示第 2、4、8 張
   const mobileWork = isMobile ? [work[1], work[3], work[7]] : work;
 
   return (
     <div className="w-full flex justify-center">
       {isMobile ? (
-        // ✅ **手機模式：只顯示 3 張圖片並以直列方式排列**
+        // ✅ 手機模式：直列 3 張圖片
         <div className="flex flex-col gap-4 items-center">
           {mobileWork.map((slide, index) => (
             <Link href={slide.url} key={index} className="w-full max-w-md">
-              <div className="relative w-full h-[50vh] overflow-hidden">
-                <img
+              <div className="relative w-full h-[45vh] overflow-hidden">
+                {/* 圖片完整呈現、不裁切 */}
+                <Image
                   src={slide.Image}
                   alt={slide.name}
+                  width={1000}
+                  height={600}
+                  quality={75}
                   className="w-full h-full object-contain"
+                  style={{ objectPosition: "center" }}
                 />
+                {/* 文字標題浮層 */}
                 <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-4 py-2 rounded-lg shadow-lg">
                   <h3 className="text-[16px] md:text-[18px] lg:text-[20px] tracking-wide font-semibold">
                     {slide.name}
@@ -97,28 +107,27 @@ const Projectswiper = () => {
           ))}
         </div>
       ) : (
-        // ✅ **桌機模式：使用 Swiper 播放全部 9 張圖片**
+        // ✅ 平板與桌機模式：使用 Swiper 輪播
         <Swiper
-          spaceBetween={isDesktop ? 50 : 30} // 桌機模式增加間距
-          centeredSlides={true} // ✅ **確保 Swiper 圖片置中**
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          spaceBetween={isDesktop ? 50 : 30} // 間距：桌機較寬
+          centeredSlides={!isDesktop} // 桌機不置中，平板置中
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           loop={true}
-          effect={"fade"}
+          effect="fade"
           fadeEffect={{ crossFade: true }}
           navigation={true}
           modules={[Autoplay, EffectFade, Navigation]}
-          className="heroSwiper"
+          className="heroSwiper w-full px-4"
           breakpoints={{
             768: {
-              slidesPerView: 2, // 平板顯示 2 張
+              slidesPerView: 2,
               spaceBetween: 30,
+              centeredSlides: true,
             },
             1024: {
-              slidesPerView: 3, // 桌機顯示 3 張
+              slidesPerView: 3,
               spaceBetween: 50,
+              centeredSlides: false,
             },
           }}
         >
@@ -126,17 +135,26 @@ const Projectswiper = () => {
             <SwiperSlide key={index}>
               <Link href={slide.url}>
                 <div
-                  className={`relative max-w-[190vh] overflow-hidden ${
-                    isDesktop ? "w-[90vw] h-auto" : "h-[75vh] md:h-[85vh]"
-                  }`}
+                  className={`relative overflow-hidden mx-auto
+                    ${
+                      isDesktop
+                        ? "w-[1280px] h-[75vh]" // ✅ 桌機尺寸
+                        : isTablet
+                        ? "w-[900px] h-[60vh]" // ✅ 平板尺寸
+                        : "w-[90%] h-[55vh]" // ✅ 其他裝置 fallback
+                    }`}
                 >
-                  <img
+                  {/* 圖片裁切鋪滿，維持視覺張力 */}
+                  <Image
                     src={slide.Image}
                     alt={slide.name}
-                    className={`w-full max-h-[80vh] object-contain ${
-                      isDesktop ? "h-auto max-h-[50vh]" : "h-full"
-                    } object-cover`}
+                    width={1600}
+                    height={900}
+                    quality={75}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: "center" }}
                   />
+                  {/* 標題 */}
                   <div className="absolute bottom-2 left-4 bg-black bg-opacity-70 text-white px-4 py-2 rounded-lg shadow-lg">
                     <h3 className="text-[18px] md:text-[22px] lg:text-[18px] tracking-wide font-semibold">
                       {slide.name}
