@@ -2,61 +2,52 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Thumbs } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-fade"; // 引入淡入淡出效果的樣式
+import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 const work = [
-  {
-    Image: "/pro/Lakec_1.png",
-    name: "Lakec",
-  },
-  {
-    Image: "/pro/Lakec_2.jpg",
-    name: "Lakec",
-  },
-  {
-    Image: "/pro/Lakec_3.png",
-    name: "Lakec",
-  },
-  {
-    Image: "/pro/Lakec_4.png",
-    name: "Lakec",
-  },
+  { Image: "/pro/Lakec_1.png", name: "Lakec" },
+  { Image: "/pro/Lakec_2.jpg", name: "Lakec" },
+  { Image: "/pro/Lakec_3.png", name: "Lakec" },
+  { Image: "/pro/Lakec_4.png", name: "Lakec" },
+  { Image: "/pro/Lakec/lakec_5.png", name: "Lakec" },
+  { Image: "/pro/Lakec/lakec_6.png", name: "Lakec" },
+  { Image: "/pro/Lakec/lakec_7.png", name: "Lakec" },
+  { Image: "/pro/Lakec/lakec_8.png", name: "Lakec" },
 ];
 
 const Lakecswiper = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null); // 使用 useState 儲存縮略圖 Swiper 實例
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <div className="w-full">
       {/* 主 Swiper */}
       <Swiper
-        slidesPerView={1} // 一次顯示一張幻燈片
-        spaceBetween={5} // 幻燈片之間的間距設置為 10px
+        slidesPerView={1}
+        spaceBetween={5}
         autoplay={{
-          delay: 2500, // 每張幻燈片停留 2500 毫秒
-          disableOnInteraction: false, // 使用者交互後不禁用自動播放
+          delay: 2500,
+          disableOnInteraction: false,
         }}
-        loop={true} // 啟用無限循環播放
-        effect={"fade"} // 使用淡入淡出效果
-        fadeEffect={{
-          crossFade: true, // 啟用交叉淡入淡出效果
-        }}
-        navigation={true} // 啟用導航按鈕
-        thumbs={{ swiper: thumbsSwiper }} // 與縮略圖 Swiper 連動
-        modules={[Autoplay, EffectFade, Navigation, Thumbs]} // 添加 Autoplay, EffectFade, Navigation 和 Thumbs 模塊
+        loop={true}
+        loopedSlides={work.length} // ✅ 為了配合 thumbs 正確對應
+        effect={"fade"}
+        fadeEffect={{ crossFade: true }}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[Autoplay, EffectFade, Navigation, Thumbs]}
         className="heroSwiper"
-        onSlideChange={(swiper) =>
-          thumbsSwiper && thumbsSwiper.slideTo(swiper.activeIndex)
-        } // 當主 Swiper 更改時，縮略圖也更新
+        onSlideChange={
+          (swiper) => thumbsSwiper && thumbsSwiper.slideToLoop(swiper.realIndex) // ✅ 使用 slideToLoop
+        }
       >
         {work.map((slide, index) => (
           <SwiperSlide key={index}>
             <img
               src={slide.Image}
-              alt={slide.name} // 為 img 元素添加描述性文字
-              className="w-full max-w-xl h-auto object-contain bg-center p-2 m-auto" // 調整圖片尺寸，添加 max-w-xl 和 h-auto 確保圖片不會過大且保持比例
+              alt={slide.name}
+              className="w-full max-w-xl h-auto object-contain bg-center p-2 m-auto"
             />
           </SwiperSlide>
         ))}
@@ -64,26 +55,24 @@ const Lakecswiper = () => {
 
       {/* 縮略圖 Swiper */}
       <Swiper
-        onSwiper={setThumbsSwiper} // 設定縮略圖 Swiper 實例，與主 Swiper 連動
-        spaceBetween={2} // 幻燈片之間的間距設置為 2px，進一步減少間距使縮略圖不過於分散
-        slidesPerView={4} // 一次顯示四縮略圖
-        freeMode={false} // 開啟 freeMode，使縮略圖自由滑動
-        watchSlidesProgress={true} // 觀察縮略圖進度
-        watchSlidesVisibility={true} // 觀察縮略圖的可見性，確保同步更新
-        modules={[Thumbs]} // 添加 Thumbs 模塊
-        className="thumbSwiper mt-4  "
-        style={{ width: "800px m-auto" }}
+        onSwiper={setThumbsSwiper}
+        spaceBetween={2}
+        slidesPerView={4}
+        loopedSlides={work.length} // ✅ 讓縮圖也對應 loop 模式
+        watchSlidesProgress={true}
+        watchSlidesVisibility={true}
+        modules={[Thumbs]}
+        className="thumbSwiper mt-2"
+        style={{ width: "800px", margin: "0 auto" }} // ✅ 修正 style 寫法
       >
         {work.map((slide, index) => (
           <SwiperSlide
             key={index}
-            onClick={() => thumbsSwiper && thumbsSwiper.slideTo(index)}
+            onClick={() => thumbsSwiper && thumbsSwiper.slideToLoop(index)} // ✅ 使用 slideToLoop
           >
-            {" "}
-            {/* 點擊縮略圖後更新主 Swiper */}
             <img
               src={slide.Image}
-              alt={slide.name} // 為縮略圖添加描述性文字
+              alt={slide.name}
               className="w-full max-w-xl h-auto object-contain p-2 mx-auto"
             />
           </SwiperSlide>
