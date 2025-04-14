@@ -26,17 +26,17 @@ const work = [
   },
   {
     Image: "/pro/Misafafahiyan_14.jpeg",
-    name: "Misafafahiyan,2020",
+    name: "Misafafahiyan Metamorphosi,2020",
     url: "/workpage/Misafafahiyan",
   },
   {
     Image: "/pro/Misafafahiyan/Misafafahiyan_1.jpeg",
-    name: "Misafafahiyan,2020",
+    name: "Misafafahiyan Metamorphosi,2020",
     url: "/workpage/Misafafahiyan",
   },
   {
     Image: "/pro/Misafafahiyan/Misafafahiyan_9.jpeg",
-    name: "Misafafahiyan,2020",
+    name: "Misafafahiyan Metamorphosi,2020",
     url: "/workpage/Misafafahiyan",
   },
   {

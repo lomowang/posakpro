@@ -55,7 +55,7 @@ const Nav = ({ containerStyles, listStyles }) => {
     <nav className={`${containerStyles} p-0`}>
       <ul className={`${listStyles}`}>
         {links.map((link) => (
-          <li key={link.id} className="relative group">
+          <li key={link.id} className="relative group px-4 xl:py-2">
             <Link
               href={link.url}
               className={`${
