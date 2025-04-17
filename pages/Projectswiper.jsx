@@ -79,7 +79,7 @@ const Projectswiper = () => {
   const mobileWork = isMobile ? [work[1], work[3], work[7]] : work;
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center ">
       {isMobile ? (
         // ✅ 手機模式：直列 3 張圖片
         <div className="flex flex-col gap-4 items-center">
@@ -138,7 +138,7 @@ const Projectswiper = () => {
                   className={`relative overflow-hidden mx-auto
                     ${
                       isDesktop
-                        ? "w-[1280px] h-[75vh]" // ✅ 桌機尺寸
+                        ? "w-screen h-[80vh]" // ✅ 桌機尺寸
                         : isTablet
                         ? "w-[900px] h-[60vh]" // ✅ 平板尺寸
                         : "w-[90%] h-[55vh]" // ✅ 其他裝置 fallback

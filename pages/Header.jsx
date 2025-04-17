@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <header
-      className={`top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-10 text-sm text-center md:justify-between lg:px-8 ${
+      className={`top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-2 text-sm text-center md:justify-between lg:px-8  ${
         scrolled ? "bg-white transition-all duration-300" : "bg-transparent"
       }`}
     >
