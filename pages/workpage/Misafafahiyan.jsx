@@ -1,5 +1,6 @@
 import React from "react";
 import Misaswiper from "./Misaswiper";
+import { MisafafahiyanDetailPage } from "@/components/WorkExperience";
 
 function Misafafahiyan() {
   return (
@@ -34,4 +35,4 @@ function Misafafahiyan() {
   );
 }
 
-export default Misafafahiyan;
+export default MisafafahiyanDetailPage;

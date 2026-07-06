@@ -79,6 +79,14 @@ const exhibitions = [
     title:
       "2023 Pulima Art Festival “Amorous Mountains, Erotic Seas: Queer, Indigene, and the Hidden History” ",
   },
+  {
+    title:
+      "2026 WE Are Becoming, presenting In the House Where Light Is Almost Invisible, at Taiwan Contemporary Culture Lab (C-LAB), Taipei, Taiwan, 8 May–16 August 2026.",
+  },
+  {
+    title:
+      "2026 Horizon Ablaze: Culture and Contemporary Art of Heat, at Taichung Museum of Art, Taichung, Taiwan, 15 May–30 August 2026.",
+  },
 ];
 
 const Cvexperience = () => {

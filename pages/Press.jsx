@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { PressIndexPage } from "@/components/PortfolioIndexPages";
 
 const Press = () => {
   // ✅ 標題原始內容
@@ -65,4 +66,4 @@ const Press = () => {
   );
 };
 
-export default Press;
+export default PressIndexPage;

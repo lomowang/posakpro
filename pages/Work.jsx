@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { WorkHeroPage } from "@/components/WorkExperience";
 
 const work = [
   {
@@ -43,4 +44,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default WorkHeroPage;

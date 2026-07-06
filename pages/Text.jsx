@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { TextIndexPage } from "@/components/PortfolioIndexPages";
 
 const Text = () => {
   return (
@@ -243,4 +244,4 @@ const Text = () => {
   );
 };
 
-export default Text;
+export default TextIndexPage;

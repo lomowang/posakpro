@@ -1,5 +1,6 @@
 import React from "react";
 import Simswiper from "./Simswiper";
+import { SimpleriverDetailPage } from "@/components/WorkExperience";
 
 function Simpleriver() {
   return (
@@ -32,4 +33,4 @@ function Simpleriver() {
   );
 }
 
-export default Simpleriver;
+export default SimpleriverDetailPage;

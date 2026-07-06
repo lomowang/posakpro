@@ -23,11 +23,11 @@ const Header = () => {
 
   return (
     <header
-      className={`top-0 z-50 max-w-[1980px] py-2 px-4 m-2 xl:py-2 text-sm text-center md:justify-between lg:px-8  ${
-        scrolled ? "bg-white transition-all duration-300" : "bg-transparent"
+      className={`sticky top-0 z-50 border-b border-black/10 px-5 py-4 text-sm backdrop-blur-md md:px-10 ${
+        scrolled ? "bg-white/95 transition-all duration-300" : "bg-white/80"
       }`}
     >
-      <h1 className="text-center font-bold text-[24px]">
+      <h1 className="story-display text-center text-[26px] md:text-left">
         <Link href="/">Posak Jodian</Link>
       </h1>
       {/* 桌面版導覽列 */}

@@ -43,6 +43,22 @@ const links = [
   },
 ];
 
+const workSubLinks = [
+  { id: 1, year: "2018", title: "Lakec", url: "/workpage/Lakec" },
+  {
+    id: 2,
+    year: "2020",
+    title: "Lakec: A Very Simple River",
+    url: "/workpage/Simpleriver",
+  },
+  {
+    id: 3,
+    year: "2022",
+    title: "Misafafahiyan Metamorphosis",
+    url: "/workpage/Misafafahiyan",
+  },
+];
+
 const Nav = ({ containerStyles, listStyles }) => {
   const [activeLink, setActiveLink] = useState(null); // 追蹤當前使用的頁面
 
@@ -68,20 +84,28 @@ const Nav = ({ containerStyles, listStyles }) => {
               {link.title}
             </Link>
             {link.subLinks && (
-              <div className="absolute left-0 top-full pt-2 z-50">
-                <ul className="hidden group-hover:block bg-white text-left text-slate-900 shadow-lg rounded w-auto max-w-[500px] min-w-[350px] min-h-[300px] px-2 py-2">
-                  {link.subLinks.map((subLink) => (
-                    <li key={subLink.id} className="text-left">
+              <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3">
+                <ul className="hidden min-w-[350px] border border-black/15 bg-white px-3 py-2 text-left text-black shadow-[0_18px_50px_rgba(0,0,0,0.08)] group-hover:block group-focus-within:block">
+                  {workSubLinks.map((subLink) => (
+                    <li
+                      key={subLink.id}
+                      className="border-b border-black/15 text-left last:border-b-0"
+                    >
                       <Link
                         href={subLink.url}
-                        className={`block px-4 py-2 font-bold border-b border-transparent transition-all duration-300 ${
+                        className={`grid grid-cols-[3.5rem_1fr] items-baseline gap-3 px-1 py-2 text-sm font-bold leading-5 transition-opacity duration-300 ${
                           activeLink === `sublink-${subLink.id}`
-                            ? "text-black border-gray-300"
-                            : "hover:text-slate-900 hover:border-gray-600"
+                            ? "opacity-100"
+                            : "hover:opacity-50"
                         }`}
                         onClick={() => handleClick(`sublink-${subLink.id}`)}
                       >
-                        {subLink.title}
+                        <span className="text-[9px] font-normal tracking-[0.18em] text-black/50">
+                          {subLink.year}
+                        </span>
+                        <span>
+                          {subLink.title}
+                        </span>
                       </Link>
                     </li>
                   ))}

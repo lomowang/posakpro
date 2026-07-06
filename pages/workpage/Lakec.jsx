@@ -1,5 +1,6 @@
 import React from "react";
 import Lakecswiper from "./Lakecswiper";
+import { LakecDetailPage } from "@/components/WorkExperience";
 
 function Lakec() {
   return (
@@ -30,4 +31,4 @@ function Lakec() {
   );
 }
 
-export default Lakec;
+export default LakecDetailPage;

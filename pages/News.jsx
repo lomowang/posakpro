@@ -1,5 +1,6 @@
 import React from "react";
 import Exhibition from "@/components/ui/Exhibition";
+import { NewsIndexPage } from "@/components/PortfolioIndexPages";
 
 const News = () => {
   const exhibitions = [
@@ -74,4 +75,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default NewsIndexPage;
