@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* globals.css or styles.css */
+@import url("https://fonts.cdnfonts.com/css/adobe-garamond-pro-2");
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Adobe Garamond Pro", sans-serif;
+  margin: 0;
+  background: #ffffff;
+}
+
+::selection {
+  background: #d34c2f;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #d34c2f;
+  outline-offset: 3px;
+}
+
+.story-display {
+  font-family: "Adobe Garamond Pro", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.story-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* 隐藏滚动条，但仍然允许滚动 */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+div.swiper-button-prev,
+div.swiper-button-next {
+  width: 30px; /* 設置按鈕寬度 */
+  height: 30px; /* 設置按鈕高度 */
+  color: #ffffff; /* 設置顏色 */
+  background-color: rgba(0, 0, 0, 0.5); /* 設置背景顏色 */
+  border-radius: 50%; /* 設置圓形 */
+  padding: 5px; /* 設置內邊距 */
+  z-index: 10; /* 確保顯示在頂層 */
+}
+
+/* 縮小箭頭圖標 */
+.work-hero-swiper .swiper-button-prev,
+.work-hero-swiper .swiper-button-next {
+  width: 52px;
+  height: 52px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.work-hero-swiper .swiper-button-prev { left: 24px; }
+.work-hero-swiper .swiper-button-next { right: 24px; }
+
+.work-hero-swiper .swiper-pagination-fraction {
+  left: auto;
+  right: 40px;
+  bottom: 26px;
+  width: auto;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  z-index: 20;
+}
+
+@media (max-width: 767px) {
+  .work-hero-swiper .swiper-button-prev,
+  .work-hero-swiper .swiper-button-next { width: 42px; height: 42px; top: 42%; }
+  .work-hero-swiper .swiper-button-prev { left: 12px; }
+  .work-hero-swiper .swiper-button-next { right: 12px; }
+  .work-hero-swiper .swiper-pagination-fraction { right: 18px; bottom: 20px; }
+}
+
+div.swiper-button-prev::after,
+div.swiper-button-next::after {
+  font-size: 16px; /* 縮小箭頭圖標大小 */
+}

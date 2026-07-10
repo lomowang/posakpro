@@ -1,94 +1,149 @@
 import React from "react";
-import Cvexperience from "./Cvexperience";
+import Cvexperience from "@/components/Cvexperience";
+import Seo from "@/components/Seo";
 import Image from "next/image";
+import Link from "next/link";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { portrait } from "@/lib/works";
 
 const About = () => {
   return (
-    <section className="max-w-screen-xl mx-auto px-4 py-12">
-      {/* ⬆️ 統一 padding，手機與桌機都舒適 */}
+    <main className="bg-white px-5 pb-32 pt-20 text-black md:px-10 md:pt-28">
+      <Seo
+        title="About"
+        description="Posak Jodian is an Amis artist, filmmaker and field researcher based in Taipei, Taiwan."
+      />
+      <section className="mx-auto max-w-[1600px]">
+        <header className="border-b border-black/25 pb-12 md:pb-20">
+          <div className="mb-12 flex justify-between text-[10px] uppercase tracking-[0.3em] md:mb-20">
+            <span>Profile / About</span>
+            <span>Taipei / Taiwan</span>
+          </div>
+          <div className="grid gap-8 md:grid-cols-[1fr_22rem] md:items-end">
+            <h1 className="story-display text-[18vw] leading-[0.72] md:text-[11vw]">
+              POSAK
+              <br />
+              JODIAN
+            </h1>
+            <p className="max-w-sm text-sm leading-relaxed text-black/65 md:text-base">
+              Artist, filmmaker and field researcher working through moving image,
+              Indigenous identity, tribal memory and urban life.
+            </p>
+          </div>
+        </header>
 
-      {/* 🧑‍🎨 個人介紹區塊 */}
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 mt-16 lg:mt-40">
-        {/* 左邊：文字區塊 */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold leading-tight">Posak Jodian</h2>
+        <section className="grid gap-12 border-b border-black/20 py-16 md:grid-cols-12 md:gap-10 md:py-28">
+          <div className="md:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden bg-black/5">
+              <Image
+                src={portrait}
+                alt="Posak Jodian"
+                fill
+                className="object-cover grayscale"
+                priority
+                sizes="(max-width: 768px) 100vw, 42vw"
+              />
+            </div>
+          </div>
 
-          {/* 介紹段落 */}
-          <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
-            Posak Jodian, an Amis who lives in Taipei. Posak is the given name
-            and Jodian is the father’s name. Posak has a background in
-            ethnolinguistics and Communication studies. She mainly uses video as
-            a method and her own ethnic identity as a starting point, to observe
-            the traditional field formulation of tribes and the urban life of
-            the aborigines who left their hometown through long-term field
-            research. Meanwhile, she participates in the scenes of various mass
-            movements, and the various actions of young people in between the
-            gaps of cities. Trying to use the ethnic and cultural actions as a
-            fulcrum to open the boundaries between identity and recognition.
-          </p>
+          <div className="md:col-span-7 md:pl-10">
+            <p className="mb-8 text-[10px] uppercase tracking-[0.35em]">
+              About the artist
+            </p>
+            <div className="space-y-8 text-lg leading-[1.65] md:text-2xl md:leading-[1.55]">
+              <p>
+                Posak Jodian, an Amis who lives in Taipei. Posak is the given
+                name and Jodian is the father’s name. Posak has a background in
+                ethnolinguistics and Communication studies. She mainly uses video
+                as a method and her own ethnic identity as a starting point, to
+                observe the traditional field formulation of tribes and the urban
+                life of the aborigines who left their hometown through long-term
+                field research.
+              </p>
+              <p>
+                Meanwhile, she participates in the scenes of various mass
+                movements, and the various actions of young people in between the
+                gaps of cities. Trying to use the ethnic and cultural actions as a
+                fulcrum to open the boundaries between identity and recognition.
+              </p>
+            </div>
 
-          <p className="text-sm leading-6 mt-4 text-justify hyphens-auto">
-            Posak’s works can be seen in various types of forms and media:
-            <br />
-            <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
-            “PETAMU Project”,
-            <br />
-            <em> Lakec: A Very Simple River</em> (2020) at the Taitung Art
-            Museum “Another Continent”,
-            <br />
-            <em> Lakec</em> project was showcased at ACT 85, Indigenous Fields,
-            Contemporary Transformations: Indigeneity in Arts and Confusions in
-            Plurality, in the “Remapping- Paper Exhibition" (2021),
-            <br />
-            <em> Misafafahiyan Metamorphosis</em> at Solid Art “Ocean and
-            Interpreters" (2022). She is also a member of OCAC (Open
-            Contemporary Art Center), PMS, Halfway Cafe and Taiwan Haibizi Tent
-            Theatre.
-          </p>
-        </div>
+            <div className="mt-12 grid gap-5 border-t border-black/20 pt-8 md:grid-cols-2">
+              <a
+                href="mailto:posak1987@gmail.com?subject=Website%20inquiry%20for%20Posak%20Jodian"
+                className="group block border border-black/25 p-6 transition hover:border-black hover:bg-black hover:text-white"
+              >
+                <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-black/55 transition group-hover:text-white/60">
+                  Email
+                </p>
+                <p className="text-lg leading-none md:text-2xl">
+                  posak1987@gmail.com
+                </p>
+                <p className="mt-5 text-[10px] uppercase tracking-[0.25em]">
+                  Send mail ↗
+                </p>
+              </a>
 
-        {/* 右邊：圖片 */}
-        <div className="w-full max-w-sm lg:w-auto">
-          <Image
-            src="/pro/Posak.png"
-            alt="Posak Jodian"
-            width={380}
-            height={500}
-            className="rounded-lg object-cover"
-            priority
-          />
-        </div>
-      </div>
+              <div className="border border-black/25 p-6">
+                <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-black/55">
+                  Social
+                </p>
+                <div className="flex items-center gap-5">
+                  <Link
+                    href="https://www.facebook.com/posakjodian"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 border-b border-black pb-1 text-[10px] uppercase tracking-[0.25em]"
+                  >
+                    <FaFacebook size={18} />
+                    Facebook
+                  </Link>
+                  <Link
+                    href="https://www.instagram.com/posakjodian/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 border-b border-black pb-1 text-[10px] uppercase tracking-[0.25em]"
+                  >
+                    <FaInstagram size={18} />
+                    Instagram
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* 📧 聯絡方式與社群連結 */}
-      <div className="flex flex-col items-center md:items-start text-center md:text-left mt-12">
-        <p className="text-sm text-gray-500">posak1987@gmail.com</p>
-        <div className="flex items-center space-x-4 mt-4">
-          <a
-            href="https://www.facebook.com/posakjodian"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 transition-colors"
-          >
-            <FaFacebook size={24} />
-          </a>
-          <a
-            href="https://www.instagram.com/posakjodian/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-pink-600 hover:text-pink-800 transition-colors"
-          >
-            <FaInstagram size={24} />
-          </a>
-        </div>
-      </div>
+        <section className="grid gap-12 border-b border-black/20 py-16 md:grid-cols-12 md:gap-10 md:py-28">
+          <div className="md:col-span-4">
+            <p className="text-[10px] uppercase tracking-[0.35em]">
+              Selected presentations
+            </p>
+            <h2 className="story-display mt-5 text-5xl leading-none md:text-7xl">
+              Works in
+              <br />
+              context
+            </h2>
+          </div>
+          <div className="space-y-5 text-base leading-relaxed text-black/70 md:col-span-8 md:text-xl">
+            <p>
+              Posak’s works can be seen in various types of forms and media:
+              <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
+              “PETAMU Project”, <em>Lakec: A Very Simple River</em> (2020) at
+              the Taitung Art Museum “Another Continent”, the <em>Lakec</em>
+              project in “Remapping—Paper Exhibition” (2021), and
+              <em> Misafafahiyan Metamorphosis</em> at Solid Art “Ocean and
+              Interpreters” (2022).
+            </p>
+            <p>
+              She is also a member of OCAC (Open Contemporary Art Center), PMS,
+              Halfway Cafe and Taiwan Haibizi Tent Theatre.
+            </p>
+          </div>
+        </section>
 
-      {/* 📝 履歷區塊 */}
-      <div className="mt-20 lg:mt-40">
         <Cvexperience />
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev logs
+dev.log
+dev.err.log
+.history/
+
+# Claude Code local state (worktrees, machine-specific permissions)
+.claude/worktrees/
+.claude/settings.local.json
