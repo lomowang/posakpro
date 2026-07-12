@@ -11,7 +11,7 @@ const About = () => {
     <main className="bg-white px-5 pb-32 pt-20 text-black md:px-10 md:pt-28">
       <Seo
         title="About"
-        description="POSAK JODIAN is an Amis artist, filmmaker and field researcher based in Taipei, Taiwan."
+        description="POSAK JODIAN is a Pangcah/Amis artist based in Taipei whose practice spans moving image, documentary, and installation."
       />
       <section className="mx-auto max-w-[1600px]">
         <header className="border-b border-black/25 pb-12 md:pb-20">
@@ -43,21 +43,15 @@ const About = () => {
             <p className="mb-8 text-[10px] uppercase tracking-[0.35em]">
               About the artist
             </p>
-            <div className="space-y-8 text-base leading-[1.75] md:text-xl md:leading-[1.65] lg:text-2xl lg:leading-[1.55]">
+            <div className="space-y-5 text-base leading-[1.85] md:text-xl md:leading-[1.75] lg:text-[1.45rem] lg:leading-[1.65]">
               <p>
-                POSAK JODIAN, an Amis who lives in Taipei. Posak is the given
-                name and Jodian is the father’s name. Posak has a background in
-                ethnolinguistics and Communication studies. She mainly uses video
-                as a method and her own ethnic identity as a starting point, to
-                observe the traditional field formulation of tribes and the urban
-                life of the aborigines who left their hometown through long-term
-                field research.
+                Posak Jodian is a Pangcah/Amis artist based in Taipei whose practice spans moving image, documentary, and installation. Her work explores the intersections of Indigenous culture, identity, and belonging, often engaging with activism and critical histories. Through various forms of lens-based media, she investigates the entangled relationships between colonization, power, and collective memory.
               </p>
               <p>
-                Meanwhile, she participates in the scenes of various mass
-                movements, and the various actions of young people in between the
-                gaps of cities. Trying to use the ethnic and cultural actions as a
-                fulcrum to open the boundaries between identity and recognition.
+                Her projects include <em>Misafafahiyan Metamorphosis</em> (2022), featured in <em>Ocean and Interpreters</em> at Solid Art; <em>There is a white deer in the mountain</em>, part of <em>Another Continent</em> at National Human Rights Museum, Green Island Biennial 2025 “Duration of 149 Sea Miles: The Struggle of Memory against Forgetting”; and <em>Misafafahiyan - Teman dari Jauh</em>, participating in Biennale Jogja 18 “KAWRUH: Land of Rooted Practices”.
+              </p>
+              <p>
+                Beyond her individual practice, Posak is an active member of OCAC (Open Contemporary Art Center) and P.M.S., through which she continues to expand collaborative frameworks and dialogues between Indigenous knowledge, contemporary art, and social movements.
               </p>
             </div>
 
