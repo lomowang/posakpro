@@ -35,22 +35,17 @@ function Biography() {
     <div className="mx-auto max-w-[1500px]">
       <Reveal>
         <div className="grid gap-12 border-t border-black/25 pt-7 md:grid-cols-[1fr_2fr] md:gap-20">
-          <div><p className="text-[10px] uppercase tracking-[0.35em]">About the artist</p><h2 className="story-display mt-5 text-6xl leading-none md:text-8xl">Posak<br />Jodian</h2></div>
-          <div className="space-y-8 text-lg leading-[1.65] md:text-2xl md:leading-[1.55]">
-            <p>Posak Jodian, an Amis who lives in Taipei. Posak is the given name and Jodian is the father’s name. Posak has a background in ethnolinguistics and Communication studies. She mainly uses video as a method and her own ethnic identity as a starting point, to observe the traditional field formulation of tribes and the urban life of the aborigines who left their hometown through long-term field research.</p>
+          <div><p className="text-[10px] uppercase tracking-[0.35em]">About the artist</p><h2 className="story-display mt-5 max-w-full whitespace-nowrap text-[11vw] leading-none sm:text-5xl md:text-[5.6vw] lg:text-8xl">POSAK JODIAN</h2></div>
+          <div className="space-y-8 text-base leading-[1.75] md:text-xl md:leading-[1.65] lg:text-2xl lg:leading-[1.55]">
+            <p>POSAK JODIAN, an Amis who lives in Taipei. Posak is the given name and Jodian is the father’s name. Posak has a background in ethnolinguistics and Communication studies. She mainly uses video as a method and her own ethnic identity as a starting point, to observe the traditional field formulation of tribes and the urban life of the aborigines who left their hometown through long-term field research.</p>
             <p>Meanwhile, she participates in the scenes of various mass movements, and the various actions of young people in between the gaps of cities. Trying to use the ethnic and cultural actions as a fulcrum to open the boundaries between identity and recognition.</p>
-            <div className="border-l border-[#d34c2f] pl-6 text-base leading-relaxed md:pl-9 md:text-xl">
-              <p className="mb-5 text-[10px] uppercase tracking-[0.35em]">Selected presentations</p>
-              <p><em>Lakec</em> (2018), OCAC “PETAMU Project”; <em>Lakec: A Very Simple River</em> (2020), Taitung Art Museum “Another Continent”; the <em>Lakec</em> project in “Remapping—Paper Exhibition” (2021); and <em>Misafafahiyan Metamorphosis</em> at Solid Art “Ocean and Interpreters” (2022).</p>
-              <p className="mt-5">She is also a member of OCAC, PMS, Halfway Cafe and Taiwan Haibizi Tent Theatre.</p>
-            </div>
           </div>
         </div>
       </Reveal>
 
       <div className="mt-32 border-t border-black/25 pt-7 md:mt-48">
         <Reveal>
-          <div className="mb-16 flex items-baseline justify-between"><h2 className="story-display text-6xl md:text-9xl">Exhibitions</h2><span className="text-[10px] uppercase tracking-[0.3em]">2008—2026</span></div>
+          <div className="mb-12 flex flex-col gap-4 border-b border-black/15 pb-5 sm:flex-row sm:items-baseline sm:justify-between md:mb-16"><h2 className="story-display text-[14vw] leading-none sm:text-6xl md:text-8xl lg:text-9xl">EXHIBITIONS</h2><span className="text-[10px] uppercase tracking-[0.3em]">2026—2008</span></div>
         </Reveal>
         <ol>{exhibitions.map(([year, event], index) => <li key={`${year}-${index}`} className="grid gap-3 border-t border-black/15 py-5 md:grid-cols-[8rem_1fr] md:gap-10 md:py-7"><span className="text-xs tracking-[0.28em] opacity-60">{year}</span><p className="text-base leading-snug md:text-xl">{event}</p></li>)}</ol>
       </div>
@@ -75,19 +70,11 @@ function StoryFrame({ progress }) {
       transition={{ duration: 0.8, delay: 1.1 }}
       className="absolute left-5 top-5 z-40 text-[9px] uppercase tracking-[0.22em] md:left-9 md:top-8 md:text-[11px] md:tracking-[0.28em]"
     >
-      Posak Jodian · Artist Portfolio
-    </motion.div>
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 1.1 }}
-      className="absolute right-5 top-5 z-40 hidden text-[11px] uppercase tracking-[0.28em] md:right-9 md:top-8 md:block"
-    >
-      Taipei / Taiwan
+      POSAK JODIAN · Artist Portfolio
     </motion.div>
     <motion.div
       style={{ x: "-50%", y: portraitY, scale: portraitScale }}
-      className="absolute left-1/2 top-[13svh] aspect-[4/5] w-[clamp(17rem,72vw,25rem)] overflow-hidden bg-black/5 md:top-[9svh] md:w-[clamp(20rem,38vw,32rem)] lg:top-[7svh] lg:w-[clamp(22rem,31vw,36rem)]"
+      className="absolute left-1/2 top-[16svh] aspect-[4/5] w-[min(68vw,21rem)] overflow-hidden bg-black/5 sm:top-[13svh] sm:w-[min(58vw,24rem)] md:top-[10svh] md:w-[min(42vw,29rem)] lg:top-[7svh] lg:w-[min(31vw,36rem)]"
     >
       <motion.div
         className="relative h-full w-full"
@@ -97,7 +84,7 @@ function StoryFrame({ progress }) {
       >
         <Image
           src={portrait}
-          alt="Posak Jodian"
+          alt="POSAK JODIAN"
           fill
           priority
           className="object-cover object-center grayscale"
@@ -106,32 +93,23 @@ function StoryFrame({ progress }) {
       </motion.div>
     </motion.div>
     <motion.div style={{ y: titleY }} className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
-      <motion.p
-        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.9, ease: introEase }}
-        className="mb-4 text-xs uppercase tracking-[0.45em]"
-      >
-        Artist · Filmmaker · Field Researcher
-      </motion.p>
-      <h1 className="story-display text-[18vw] leading-[0.76] md:text-[12vw]">
-        <TitleLine delay={0.35}>POSAK</TitleLine>
-        <TitleLine delay={0.5}>JODIAN</TitleLine>
+      <h1 className="story-display max-w-[96vw] whitespace-nowrap text-[11.5vw] leading-[0.82] sm:text-[10vw] md:text-[7.6vw] lg:text-[8vw]">
+        <TitleLine delay={0.35}>POSAK JODIAN</TitleLine>
       </h1>
-      <motion.p
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 1.4 }}
-        className="mt-8 text-[10px] uppercase tracking-[0.36em]"
-      >
-        Scroll to enter
-      </motion.p>
     </motion.div>
+    <motion.p
+      initial={reduceMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.9, delay: 1.4 }}
+      className="absolute bottom-[8.5svh] left-1/2 z-40 -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-[0.36em] text-black md:bottom-[7svh]"
+    >
+      Scroll to enter
+    </motion.p>
     <div className="absolute bottom-5 left-5 z-40 text-[10px] tracking-[0.25em] md:bottom-8 md:left-9">© 2026</div>
     <button
       type="button"
       onClick={enterSite}
-      className="absolute bottom-5 right-5 z-50 border border-black/35 bg-white/70 px-4 py-3 text-[10px] uppercase tracking-[0.28em] text-black backdrop-blur-sm transition hover:border-black hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black/30 md:bottom-8 md:right-9 md:px-5"
+      className="absolute bottom-5 right-5 z-50 border border-black/35 bg-white/70 px-3 py-3 text-[9px] uppercase tracking-[0.22em] text-black backdrop-blur-sm transition hover:border-black hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black/30 md:bottom-8 md:right-9 md:px-5 md:text-[10px] md:tracking-[0.28em]"
       aria-label="Skip the intro and enter the site content"
     >
       Enter site ↓
@@ -148,10 +126,10 @@ export default function Hero() {
     <Biography />
     <section id="works" className="scroll-mt-8 bg-white px-5 py-24 text-black md:px-10 md:py-36"><div className="mx-auto max-w-[1600px]">
       <Reveal>
-        <div className="mb-20 flex items-end justify-between border-b border-black/25 pb-6"><h2 className="story-display text-6xl md:text-9xl">WORKS</h2><p className="hidden max-w-xs text-right text-sm leading-relaxed text-black/60 md:block">Moving image, field research and stories carried across land, water and generations.</p></div>
+        <div className="mb-16 flex items-end justify-between border-b border-black/25 pb-6 md:mb-20"><h2 className="story-display text-[18vw] leading-none sm:text-6xl md:text-8xl lg:text-9xl">WORKS</h2><p className="hidden max-w-xs text-right text-sm leading-relaxed text-black/60 md:block">Moving image, field research and stories carried across land, water and generations.</p></div>
       </Reveal>
       <div className="space-y-20 md:space-y-32">{works.map((work, index) => <Reveal key={work.title} delay={0.05}>
-        <Link href={work.href} className="group grid gap-5 border-b border-black/15 pb-16 md:grid-cols-[5rem_1fr] md:gap-10"><span className="text-xs tracking-[0.35em] text-black/50">0{index + 1}</span><div><div className="relative aspect-[16/9] overflow-hidden bg-black/5"><Image src={work.image} alt={work.title} fill className="object-cover transition duration-700 ease-out group-hover:scale-[1.025] group-hover:opacity-80" sizes="(max-width: 768px) 100vw, 85vw" /></div><div className="mt-5 flex items-start justify-between gap-4"><h3 className="story-display text-3xl leading-none md:text-6xl">{work.title}</h3><span className="text-xs tracking-[0.25em] text-black/55 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">{work.year} ↗</span></div></div></Link>
+        <Link href={work.href} className="group grid gap-5 border-b border-black/15 pb-16 md:grid-cols-[5rem_1fr] md:gap-10"><span className="text-xs tracking-[0.35em] text-black/50">0{index + 1}</span><div><div className="relative aspect-[16/9] overflow-hidden bg-black/5"><Image src={work.image} alt={work.title} fill className="object-cover transition duration-700 ease-out group-hover:scale-[1.025] group-hover:opacity-80" sizes="(max-width: 768px) 100vw, 85vw" /></div><div className="mt-5 flex items-start justify-between gap-4"><h3 className="story-display min-w-0 text-3xl leading-none sm:text-4xl md:text-5xl lg:text-6xl">{work.title}</h3><span className="shrink-0 text-xs tracking-[0.25em] text-black/55 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">{work.year} ↗</span></div></div></Link>
       </Reveal>)}</div>
       <div id="view-all-works" className="mt-24 flex justify-center"><Link href="/Work" className="rounded-full border border-black/40 px-8 py-4 text-xs uppercase tracking-[0.3em] transition hover:bg-black hover:text-white">View all works</Link></div>
     </div></section>

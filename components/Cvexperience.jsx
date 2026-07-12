@@ -10,12 +10,12 @@ const Cvexperience = () => {
             <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-black/55">
               Curriculum vitae
             </p>
-            <h2 className="story-display text-6xl leading-none md:text-9xl">
-              Exhibitions
+            <h2 className="story-display text-[14vw] leading-none sm:text-6xl md:text-8xl lg:text-9xl">
+              EXHIBITIONS
             </h2>
           </div>
           <span className="hidden text-[10px] uppercase tracking-[0.3em] text-black/55 md:block">
-            2008—2026
+            2026—2008
           </span>
         </div>
       </Reveal>

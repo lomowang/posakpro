@@ -6,7 +6,7 @@ export default function Press() {
     <>
       <Seo
         title="Press"
-        description="Conversations, reviews and published encounters with Posak Jodian’s practice."
+        description="Conversations, reviews and published encounters with POSAK JODIAN’s practice."
       />
       <PressIndexPage />
     </>

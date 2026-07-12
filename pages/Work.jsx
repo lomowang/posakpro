@@ -6,7 +6,7 @@ export default function Work() {
     <>
       <Seo
         title="Work"
-        description="Selected moving-image works by Posak Jodian, shaped by field research, memory and Indigenous experience."
+        description="Selected moving-image works by POSAK JODIAN, shaped by field research, memory and Indigenous experience."
       />
       <WorkHeroPage />
     </>

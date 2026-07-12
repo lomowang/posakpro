@@ -11,24 +11,17 @@ const About = () => {
     <main className="bg-white px-5 pb-32 pt-20 text-black md:px-10 md:pt-28">
       <Seo
         title="About"
-        description="Posak Jodian is an Amis artist, filmmaker and field researcher based in Taipei, Taiwan."
+        description="POSAK JODIAN is an Amis artist, filmmaker and field researcher based in Taipei, Taiwan."
       />
       <section className="mx-auto max-w-[1600px]">
         <header className="border-b border-black/25 pb-12 md:pb-20">
           <div className="mb-12 flex justify-between text-[10px] uppercase tracking-[0.3em] md:mb-20">
             <span>Profile / About</span>
-            <span>Taipei / Taiwan</span>
           </div>
-          <div className="grid gap-8 md:grid-cols-[1fr_22rem] md:items-end">
-            <h1 className="story-display text-[18vw] leading-[0.72] md:text-[11vw]">
-              POSAK
-              <br />
-              JODIAN
+          <div className="grid gap-8 md:grid-cols-[1fr_18rem] md:items-end lg:grid-cols-[1fr_22rem]">
+            <h1 className="story-display max-w-full whitespace-nowrap text-[11.5vw] leading-[0.82] sm:text-[10vw] md:text-[7.2vw] lg:text-[8vw]">
+              POSAK JODIAN
             </h1>
-            <p className="max-w-sm text-sm leading-relaxed text-black/65 md:text-base">
-              Artist, filmmaker and field researcher working through moving image,
-              Indigenous identity, tribal memory and urban life.
-            </p>
           </div>
         </header>
 
@@ -37,7 +30,7 @@ const About = () => {
             <div className="relative aspect-[4/5] overflow-hidden bg-black/5">
               <Image
                 src={portrait}
-                alt="Posak Jodian"
+                alt="POSAK JODIAN"
                 fill
                 className="object-cover grayscale"
                 priority
@@ -50,9 +43,9 @@ const About = () => {
             <p className="mb-8 text-[10px] uppercase tracking-[0.35em]">
               About the artist
             </p>
-            <div className="space-y-8 text-lg leading-[1.65] md:text-2xl md:leading-[1.55]">
+            <div className="space-y-8 text-base leading-[1.75] md:text-xl md:leading-[1.65] lg:text-2xl lg:leading-[1.55]">
               <p>
-                Posak Jodian, an Amis who lives in Taipei. Posak is the given
+                POSAK JODIAN, an Amis who lives in Taipei. Posak is the given
                 name and Jodian is the father’s name. Posak has a background in
                 ethnolinguistics and Communication studies. She mainly uses video
                 as a method and her own ethnic identity as a starting point, to
@@ -76,7 +69,7 @@ const About = () => {
                 <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-black/55 transition group-hover:text-white/60">
                   Email
                 </p>
-                <p className="text-lg leading-none md:text-2xl">
+                <p className="break-all text-lg leading-none md:text-2xl">
                   posak1987@gmail.com
                 </p>
                 <p className="mt-5 text-[10px] uppercase tracking-[0.25em]">
@@ -110,34 +103,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="grid gap-12 border-b border-black/20 py-16 md:grid-cols-12 md:gap-10 md:py-28">
-          <div className="md:col-span-4">
-            <p className="text-[10px] uppercase tracking-[0.35em]">
-              Selected presentations
-            </p>
-            <h2 className="story-display mt-5 text-5xl leading-none md:text-7xl">
-              Works in
-              <br />
-              context
-            </h2>
-          </div>
-          <div className="space-y-5 text-base leading-relaxed text-black/70 md:col-span-8 md:text-xl">
-            <p>
-              Posak’s works can be seen in various types of forms and media:
-              <em> Lakec</em> (2018) at Open Contemporary Art Center’s (OCAC)
-              “PETAMU Project”, <em>Lakec: A Very Simple River</em> (2020) at
-              the Taitung Art Museum “Another Continent”, the <em>Lakec</em>
-              project in “Remapping—Paper Exhibition” (2021), and
-              <em> Misafafahiyan Metamorphosis</em> at Solid Art “Ocean and
-              Interpreters” (2022).
-            </p>
-            <p>
-              She is also a member of OCAC (Open Contemporary Art Center), PMS,
-              Halfway Cafe and Taiwan Haibizi Tent Theatre.
-            </p>
           </div>
         </section>
 

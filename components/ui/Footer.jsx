@@ -43,8 +43,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8 text-[10px] uppercase tracking-[0.3em] text-white/45">
-          <span>© {new Date().getFullYear()} Posak Jodian</span>
-          <span className="hidden md:inline">Taipei / Taiwan</span>
+          <span>© {new Date().getFullYear()} POSAK JODIAN</span>
           <button
             type="button"
             onClick={scrollToTop}

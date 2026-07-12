@@ -1,8 +1,8 @@
 import Head from "next/head";
 
-const SITE_NAME = "Posak Jodian";
+const SITE_NAME = "POSAK JODIAN";
 const DEFAULT_DESCRIPTION =
-  "Posak Jodian is an Amis artist, filmmaker and field researcher based in Taipei, working through moving image, Indigenous identity, tribal memory and urban life.";
+  "POSAK JODIAN is an Amis artist, filmmaker and field researcher based in Taipei, working through moving image, Indigenous identity, tribal memory and urban life.";
 
 // Meta tags carry `key` attributes so a page-level <Seo> overrides the
 // layout-level default.

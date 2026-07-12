@@ -6,7 +6,7 @@ export default function News() {
     <>
       <Seo
         title="News"
-        description="Current and recent exhibitions, screenings and public programmes by Posak Jodian."
+        description="Current and recent exhibitions, screenings and public programmes by POSAK JODIAN."
       />
       <NewsIndexPage />
     </>

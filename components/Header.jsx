@@ -21,7 +21,7 @@ const Header = () => {
     >
       <p className="story-display text-center text-[26px] md:text-left">
         <Link href="/" className="transition-opacity hover:opacity-60">
-          Posak Jodian
+          POSAK JODIAN
         </Link>
       </p>
       {/* 桌面版導覽列 */}

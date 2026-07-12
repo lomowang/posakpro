@@ -6,7 +6,7 @@ export default function Text() {
     <>
       <Seo
         title="Text / Media"
-        description="Writing, publications and research surrounding Posak Jodian’s practice."
+        description="Writing, publications and research surrounding POSAK JODIAN’s practice."
       />
       <TextIndexPage />
     </>
