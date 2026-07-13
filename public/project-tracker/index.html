@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="專案追蹤" />
+<meta name="theme-color" content="#F7F4EE" />
+<meta name="description" content="在手機或電腦上管理專案進度、待辦、分期履約與決策記錄。資料預設只保存在你的瀏覽器中。" />
+<meta property="og:title" content="專案進度追蹤" />
+<meta property="og:description" content="輕量、可安裝的專案進度記事工具。" />
+<meta property="og:type" content="website" />
+<link rel="manifest" href="manifest.json" />
+<title>專案進度追蹤</title>
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --card: #FFFFFF;
+    --ink: #2B2621;
+    --muted: #8A8578;
+    --accent: #B0631F;
+    --border: #E7E1D4;
+    --green: #3D7A5C;
+    --amber: #C4841D;
+    --red: #B23A2E;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  #app { max-width: 480px; margin: 0 auto; min-height: 100vh; padding-bottom: 40px; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  input, textarea, select { font-family: inherit; }
+  .sticky { position: sticky; top: 0; z-index: 10; background: var(--bg); }
+  .header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .row { display: flex; align-items: center; }
+  .row-between { display: flex; align-items: center; justify-content: space-between; }
+  .eyebrow { color: var(--muted); font-size: 12px; letter-spacing: 0.3px; }
+  h1 { font-size: 20px; font-weight: 700; margin: 2px 0 0; }
+  .fab {
+    width: 44px; height: 44px; border-radius: 999px; background: var(--accent);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: transform .1s;
+  }
+  .fab:active { transform: scale(0.95); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    text-align: center; padding: 8px 4px;
+  }
+  .stat-value { font-size: 14px; font-weight: 700; }
+  .stat-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .report-btn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--ink); color: #fff; border-radius: 12px; padding: 10px; font-size: 12px;
+    font-weight: 600; margin-bottom: 12px; transition: background .15s;
+  }
+  .report-btn.copied { background: var(--green); }
+  .data-tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .data-tool-btn { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 38px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); color: var(--ink); font-size: 12px; font-weight: 600; }
+  .data-tool-btn:active { transform: scale(0.98); }
+  .data-note { margin: -4px 0 12px; color: var(--muted); font-size: 10px; line-height: 1.5; text-align: center; }
+  .search-box {
+    display: flex; align-items: center; gap: 8px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; margin-bottom: 8px;
+  }
+  .search-box input { flex: 1; border: none; outline: none; background: transparent; font-size: 14px; color: var(--ink); }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+  .chip {
+    flex-shrink: 0; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
+    background: var(--card); color: var(--muted); border: 1px solid var(--border);
+  }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .list { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .empty { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .card {
+    text-align: left; width: 100%; background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); transition: transform .1s;
+  }
+  .card:active { transform: scale(0.98); }
+  .status-chip { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 999px; color: #fff; flex-shrink: 0; }
+  .card-name { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .card-sub { color: var(--muted); font-size: 12px; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .progress-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .progress-track { flex: 1; height: 6px; border-radius: 999px; background: var(--bg); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 999px; }
+  .progress-label { font-size: 10px; color: var(--muted); flex-shrink: 0; }
+  .next-line { font-size: 12px; margin-top: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .stuck-box { font-size: 12px; margin-top: 6px; background: #FBF3E4; color: var(--amber); border-radius: 8px; padding: 4px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .overdue-line { color: var(--red); font-size: 12px; margin-top: 6px; }
+  /* Detail screen */
+  .back-btn { width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .detail-body { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .status-select-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .status-opt { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); }
+  .status-opt.active { color: #fff; border-color: transparent; }
+  .summary-box { background: var(--ink); border-radius: 16px; padding: 16px; }
+  .summary-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .summary-title { color: #D9CFC0; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+  .copy-btn { display: flex; align-items: center; gap: 4px; font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #453F37; color: #fff; }
+  .copy-btn.copied { background: var(--green); }
+  .summary-text { color: var(--bg); font-size: 14px; line-height: 1.7; }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+  .field-label { color: var(--muted); font-size: 11px; font-weight: 500; display: block; margin-bottom: 4px; }
+  .field-input { width: 100%; border: none; border-bottom: 1px solid var(--border); outline: none; background: transparent; font-size: 14px; color: var(--ink); padding-bottom: 6px; }
+  .field-group { margin-bottom: 12px; }
+  .field-group:last-child { margin-bottom: 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .section-head { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 14px; font-weight: 600; }
+  .section-body { padding: 0 16px 16px; }
+  .budget-compare { display: flex; align-items: center; justify-content: space-between; border-radius: 12px; padding: 8px 12px; margin-bottom: 12px; font-size: 12px; }
+  .inst-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--bg); border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; }
+  .inst-select { font-size: 11px; border-radius: 999px; padding: 4px 8px; color: #fff; border: none; outline: none; }
+  .dashed-btn { width: 100%; margin-top: 4px; border: 1px dashed var(--accent); color: var(--accent); border-radius: 12px; padding: 8px; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .todo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .todo-check { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 12px; }
+  .todo-check.done { background: var(--green); border-color: var(--green); }
+  .todo-text { flex: 1; font-size: 14px; }
+  .todo-text.done { color: var(--muted); text-decoration: line-through; }
+  .add-row { display: flex; gap: 8px; align-items: center; }
+  .add-row input { flex: 1; border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; font-size: 14px; outline: none; background: var(--bg); color: var(--ink); }
+  .add-circle { width: 36px; height: 36px; border-radius: 999px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+  .decision-card { background: var(--bg); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+  .decision-top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .decision-date { color: var(--muted); font-size: 11px; }
+  .decision-problem { font-size: 14px; font-weight: 500; margin-top: 4px; }
+  .decision-opt { font-size: 12px; margin-top: 2px; }
+  .decision-reason { font-size: 12px; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .delete-link { font-size: 12px; color: var(--muted); background: none; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(43,38,33,0.5); z-index: 20; display: flex; align-items: flex-end; justify-content: center; }
+  .modal-sheet { width: 100%; max-width: 420px; background: var(--card); border-radius: 24px 24px 0 0; padding: 20px; max-height: 85vh; overflow-y: auto; }
+  @media (min-width: 640px) { .modal-overlay { align-items: center; } .modal-sheet { border-radius: 24px; } }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .modal-title { font-size: 16px; font-weight: 700; }
+  .primary-btn { width: 100%; margin-top: 8px; border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 600; color: #fff; }
+  .helper-box { font-size: 12px; border-radius: 12px; padding: 8px 12px; margin-bottom: 12px; }
+  .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .option-letter { width: 24px; height: 24px; border-radius: 999px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .option-input { flex: 1; border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; font-size: 14px; outline: none; background: var(--bg); color: var(--ink); }
+  .link-btn { font-size: 12px; font-weight: 500; color: var(--accent); display: flex; align-items: center; gap: 4px; }
+  .select-input { width: 100%; border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; font-size: 14px; outline: none; background: var(--bg); color: var(--ink); }
+  textarea.field-input { resize: none; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<input id="importFile" type="file" accept="application/json,.json" hidden onchange="importProjects(event)" />
+
+<script>
+// ---------- Utilities ----------
+const STORAGE_KEY = "projects-v1-standalone";
+const STATUS_OPTIONS = ["進行中", "卡關", "等待回覆", "已完成"];
+const STATUS_COLOR = { "進行中": "#3D7A5C", "卡關": "#C4841D", "等待回覆": "#C4841D", "已完成": "#8A8578" };
+const INSTALLMENT_STATUS = ["未開始", "待驗收", "待請款", "已付款"];
+const INSTALLMENT_COLOR = { "未開始": "#B8B2A3", "待驗收": "#C4841D", "待請款": "#B0631F", "已付款": "#3D7A5C" };
+
+function uid() { return Math.random().toString(36).slice(2, 10); }
+function todayISO() { return new Date().toISOString().slice(0, 10); }
+function daysSince(dateStr) {
+  if (!dateStr) return null;
+  return Math.floor((new Date() - new Date(dateStr)) / 86400000);
+}
+function esc(str) {
+  if (str === undefined || str === null) return "";
+  return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function fmtMoney(n) { return Number(n || 0).toLocaleString(); }
+
+function buildReportSummary(p) {
+  const parts = [`目前狀態：${p.status}。`];
+  if (p.installments && p.installments.length) {
+    const paid = p.installments.filter(i => i.status === "已付款").length;
+    parts.push(`分期履約共 ${p.installments.length} 期，已付款 ${paid} 期。`);
+  }
+  const pending = (p.nextActions || []).filter(a => !a.done);
+  if (pending.length) parts.push(`下一步：${pending.map(a => a.text).join("、")}。`);
+  if (p.decisions && p.decisions.length) {
+    const latest = [...p.decisions].sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+    parts.push(`最近處理事項（${latest.date}）：${latest.problem}，選擇方案「${latest.selected || "尚未選定"}」${latest.reason ? "，原因是" + latest.reason : ""}。`);
+  }
+  return parts.join(" ");
+}
+
+// ---------- State ----------
+function loadProjects() {
+  try {
+    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch (error) {
+    console.warn("無法讀取瀏覽器中的專案資料", error);
+    return [];
+  }
+}
+
+let state = {
+  projects: loadProjects(),
+  view: { screen: "list" },
+  modal: null,
+  query: "",
+  statusFilter: "全部",
+  openSections: { detail: false, installments: true, decisions: true },
+  reportCopied: false,
+  summaryCopied: false,
+  shareCopied: false,
+  confirmDelete: false,
+  newActionDraft: "",
+  decisionOptions: [{ label: "A", text: "" }],
+};
+
+function persist() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.projects)); }
+function setState(patch) { Object.assign(state, patch); render(); }
+function getProject(id) { return state.projects.find(p => p.id === id); }
+function updateProject(id, updater) {
+  state.projects = state.projects.map(p => p.id === id ? { ...p, ...updater(p), lastUpdated: todayISO() } : p);
+  persist(); render();
+}
+
+// ---------- Icons (inline SVG, minimal) ----------
+const ICON = {
+  plus: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+  back: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
+  copy: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+  check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  x: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+  alert: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+  search: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  chevDown: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+  chevUp: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>',
+};
+
+// ---------- Render: List Screen ----------
+function renderListScreen() {
+  const now = new Date();
+  const projects = state.projects;
+  const inProgressCount = projects.filter(p => p.status === "進行中").length;
+  const totalBudget = projects.reduce((s, p) => s + Number(p.budget || 0), 0);
+  const dueThisMonth = projects.filter(p => {
+    if (!p.scheduleEnd) return false;
+    const d = new Date(p.scheduleEnd);
+    return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+  }).length;
+
+  const filtered = projects.filter(p => {
+    if (state.statusFilter !== "全部" && p.status !== state.statusFilter) return false;
+    if (state.query.trim()) {
+      const q = state.query.trim().toLowerCase();
+      const hay = [p.name, p.contact, p.organization, p.docNumber].filter(Boolean).join(" ").toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const statsHtml = projects.length ? `
+    <div class="stats">
+      <div class="stat-pill"><div class="stat-value">${inProgressCount} 件</div><div class="stat-label">進行中</div></div>
+      <div class="stat-pill"><div class="stat-value">$${(totalBudget/10000).toFixed(0)}萬</div><div class="stat-label">總經費</div></div>
+      <div class="stat-pill"><div class="stat-value">${dueThisMonth} 件</div><div class="stat-label">本月到期</div></div>
+    </div>` : "";
+
+  const reportBtn = projects.length ? `
+    <button class="report-btn ${state.reportCopied ? 'copied' : ''}" onclick="copyMeetingReport()">
+      ${state.reportCopied ? ICON.check : ICON.copy} ${state.reportCopied ? "已複製，可直接貼上" : "複製全部進度（會議報告用）"}
+    </button>` : "";
+
+  const dataToolsHtml = `
+    <div class="data-tools">
+      <button class="data-tool-btn" onclick="shareApp()">${state.shareCopied ? ICON.check : '↗'} ${state.shareCopied ? '已複製' : '分享工具'}</button>
+      <button class="data-tool-btn" onclick="exportProjects()">↓ 備份資料</button>
+      <button class="data-tool-btn" onclick="document.getElementById('importFile').click()">↑ 匯入資料</button>
+    </div>
+    <p class="data-note">資料只存於你的瀏覽器；備份檔可用於換裝置或交接。</p>`;
+
+  const searchHtml = projects.length ? `
+    <div class="search-box">
+      ${ICON.search}
+      <input placeholder="搜尋專案、聯繫窗口、機構、文號" value="${esc(state.query)}" oninput="setState({query:this.value})" />
+    </div>
+    <div class="chips">
+      ${["全部", ...STATUS_OPTIONS].map(s => `
+        <button class="chip ${state.statusFilter === s ? 'active' : ''}" onclick="setState({statusFilter:'${s}'})">${s}</button>
+      `).join("")}
+    </div>` : "";
+
+  const listHtml = projects.length === 0 ? `
+    <div class="empty">還沒有專案。<br/>點右上角「+」新增第一個。</div>
+  ` : filtered.length === 0 ? `
+    <p style="text-align:center;color:var(--muted);font-size:14px;padding:32px 0;">沒有符合條件的專案</p>
+  ` : filtered.map(p => {
+    const stale = daysSince(p.lastUpdated);
+    const overdue = stale !== null && stale >= 10;
+    const inst = p.installments || [];
+    const paidCount = inst.filter(i => i.status === "已付款").length;
+    const pending = (p.nextActions || []).filter(a => !a.done);
+    const decisions = p.decisions || [];
+    const latestDecision = decisions.length ? [...decisions].sort((a,b)=>(a.date<b.date?1:-1))[0] : null;
+    const isStuck = p.status === "卡關" || p.status === "等待回覆";
+    return `
+      <button class="card" onclick="openProject('${p.id}')">
+        <div class="row-between">
+          <div class="card-name">${esc(p.name)}</div>
+          <span class="status-chip" style="background:${STATUS_COLOR[p.status]||'#8A8578'}">${esc(p.status)}</span>
+        </div>
+        <div class="card-sub">${p.organization ? esc(p.organization)+" · " : ""}${esc(p.contact) || "未設定聯繫窗口"}${p.scheduleEnd ? " · 期限 "+esc(p.scheduleEnd) : ""}</div>
+        ${inst.length ? `
+        <div class="progress-row">
+          <div class="progress-track"><div class="progress-fill" style="width:${(paidCount/inst.length*100)}%"></div></div>
+          <span class="progress-label">履約 ${paidCount}/${inst.length} 期</span>
+        </div>` : ""}
+        ${pending.length ? `<div class="next-line">▸ 下一步：${esc(pending[0].text)}${pending.length>1?`（+${pending.length-1}）`:""}</div>` : ""}
+        ${isStuck && latestDecision ? `<div class="stuck-box">⚠ ${esc(latestDecision.problem)}${latestDecision.selected?`（處理中：方案${esc(latestDecision.selected)}）`:""}</div>` : ""}
+        ${overdue ? `<div class="overdue-line">${ICON.alert} ${stale} 天未更新</div>` : ""}
+      </button>
+    `;
+  }).join("");
+
+  return `
+    <div class="sticky header">
+      <div class="row-between">
+        <div><div class="eyebrow">進度追蹤</div><h1>我的專案</h1></div>
+        <button class="fab" onclick="setState({modal:'addProject'})">${ICON.plus}</button>
+      </div>
+      ${statsHtml}
+      ${reportBtn}
+      ${dataToolsHtml}
+      ${searchHtml}
+    </div>
+    <div class="list">${listHtml}</div>
+  `;
+}
+
+// ---------- Render: Detail Screen ----------
+function renderDetailScreen(p) {
+  const summary = buildReportSummary(p);
+  const inst = p.installments || [];
+  const totalInst = inst.reduce((s,i)=>s+Number(i.amount||0),0);
+  const budget = Number(p.budget||0);
+  const match = budget>0 && totalInst===budget;
+  const over = budget>0 && totalInst>budget;
+  const decisions = p.decisions || [];
+  const nextActions = p.nextActions || [];
+
+  const budgetCompareHtml = budget>0 ? `
+    <div class="budget-compare" style="background:${match?'#EAF2ED':over?'#FBEAE7':'#FBF3E4'};color:${match?'var(--green)':over?'var(--red)':'var(--amber)'}">
+      <span>已分配 $${fmtMoney(totalInst)} / 經費 $${fmtMoney(budget)}</span>
+      <span style="font-weight:600">${match?'✓ 相符':over?'超出經費':`尚差 $${fmtMoney(budget-totalInst)}`}</span>
+    </div>` : "";
+
+  return `
+    <div class="sticky header" style="display:flex;align-items:center;gap:8px;padding:16px 12px;">
+      <button class="back-btn" onclick="setState({view:{screen:'list'}, confirmDelete:false})">${ICON.back}</button>
+      <h1 style="font-size:16px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(p.name)}</h1>
+    </div>
+    <div class="detail-body">
+      <div class="status-select-row">
+        ${STATUS_OPTIONS.map(s => `
+          <button class="status-opt ${p.status===s?'active':''}" style="${p.status===s?`background:${STATUS_COLOR[s]}`:''}" onclick="updateProject('${p.id}', pr=>({status:'${s}'}))">${s}</button>
+        `).join("")}
+      </div>
+
+      <div class="summary-box">
+        <div class="summary-head">
+          <span class="summary-title">📢 報告摘要</span>
+          <button class="copy-btn ${state.summaryCopied?'copied':''}" onclick="copySummary('${p.id}')">${state.summaryCopied?ICON.check:ICON.copy} ${state.summaryCopied?'已複製':'複製'}</button>
+        </div>
+        <p class="summary-text">${esc(summary)}</p>
+      </div>
+
+      <div class="panel">
+        <label class="field-label">下一步行動</label>
+        <div style="margin-bottom:8px;">
+          ${nextActions.length===0 ? `<p style="color:var(--muted);font-size:12px;">尚未新增待辦</p>` : nextActions.map(a=>`
+            <div class="todo-row">
+              <button class="todo-check ${a.done?'done':''}" onclick="toggleNextAction('${p.id}','${a.id}')">${a.done?ICON.check:''}</button>
+              <span class="todo-text ${a.done?'done':''}">${esc(a.text)}</span>
+              <button onclick="removeNextAction('${p.id}','${a.id}')" style="color:var(--muted)">${ICON.x}</button>
+            </div>
+          `).join("")}
+        </div>
+        <div class="add-row">
+          <input id="newActionInput" placeholder="新增待辦，例：找廠商寫簽文" value="${esc(state.newActionDraft)}" oninput="state.newActionDraft=this.value" onkeydown="if(event.key==='Enter')addNextAction('${p.id}')" />
+          <button class="add-circle" onclick="addNextAction('${p.id}')">${ICON.plus}</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <button class="section-head" onclick="toggleSection('detail')">
+          <span>詳細資料</span>${state.openSections.detail?ICON.chevUp:ICON.chevDown}
+        </button>
+        ${state.openSections.detail ? `
+        <div class="section-body">
+          ${detailField('聯繫廠商（人員）','contact',p,'text','例：吳密察教授')}
+          ${detailField('合作機構','organization',p,'text','例：國立史前博物館')}
+          ${detailField('公文文號','docNumber',p,'text','例：原博籌字第1150001234號')}
+          ${detailField('經費','budget',p,'number','例：450000')}
+          ${detailField('簽約日期','assignDate',p,'date')}
+          <div class="grid2">
+            ${detailField('時程開始','scheduleStart',p,'date')}
+            ${detailField('時程結束','scheduleEnd',p,'date')}
+          </div>
+        </div>` : ""}
+      </div>
+
+      <div class="section">
+        <button class="section-head" onclick="toggleSection('installments')">
+          <span>分期履約${inst.length?` (${inst.length})`:''}</span>${state.openSections.installments?ICON.chevUp:ICON.chevDown}
+        </button>
+        ${state.openSections.installments ? `
+        <div class="section-body">
+          ${budgetCompareHtml}
+          ${inst.length===0?`<p style="color:var(--muted);font-size:12px;">尚未新增期別</p>`:inst.map((i,idx)=>`
+            <div class="inst-row">
+              <div style="font-size:14px;font-weight:500;">第 ${idx+1} 期・$${fmtMoney(i.amount)}</div>
+              <select class="inst-select" style="background:${INSTALLMENT_COLOR[i.status]}" onchange="updateInstallmentStatus('${p.id}','${i.id}',this.value)">
+                ${INSTALLMENT_STATUS.map(s=>`<option value="${s}" ${i.status===s?'selected':''}>${s}</option>`).join("")}
+              </select>
+              <button onclick="removeInstallment('${p.id}','${i.id}')" style="color:var(--muted)">${ICON.x}</button>
+            </div>
+          `).join("")}
+          <button class="dashed-btn" onclick="setState({modal:'installment'})">${ICON.plus} 新增期別</button>
+        </div>` : ""}
+      </div>
+
+      <div class="section">
+        <button class="section-head" onclick="toggleSection('decisions')">
+          <span>決策記錄${decisions.length?` (${decisions.length})`:''}</span>${state.openSections.decisions?ICON.chevUp:ICON.chevDown}
+        </button>
+        ${state.openSections.decisions ? `
+        <div class="section-body">
+          ${decisions.length===0?`<p style="color:var(--muted);font-size:12px;">尚未記錄任何決策</p>`:decisions.map(d=>`
+            <div class="decision-card">
+              <div class="decision-top">
+                <span class="decision-date">${esc(d.date)}</span>
+                <button onclick="removeDecision('${p.id}','${d.id}')" style="color:var(--muted)">${ICON.x}</button>
+              </div>
+              <div class="decision-problem">${esc(d.problem)}</div>
+              ${(d.options||[]).map(o=>`<div class="decision-opt" style="color:${o.label===d.selected?'var(--ink)':'var(--muted)'}">${o.label===d.selected?'✅':'▫️'} ${esc(o.label)}. ${esc(o.text)}</div>`).join("")}
+              ${d.reason?`<div class="decision-reason">原因：${esc(d.reason)}</div>`:""}
+            </div>
+          `).join("")}
+          <button class="dashed-btn" onclick="openDecisionModal()">${ICON.plus} 新增決策記錄</button>
+        </div>` : ""}
+      </div>
+
+      <div style="padding-top:8px;padding-bottom:16px;">
+        ${!state.confirmDelete ? `
+          <button class="delete-link" onclick="setState({confirmDelete:true})">刪除此專案</button>
+        ` : `
+          <span style="font-size:12px;color:var(--muted);">確定刪除？</span>
+          <button style="font-size:12px;font-weight:600;color:var(--red);margin-left:8px;" onclick="deleteProject('${p.id}')">確定刪除</button>
+          <button style="font-size:12px;color:var(--muted);margin-left:8px;" onclick="setState({confirmDelete:false})">取消</button>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function detailField(label, field, p, type, placeholder) {
+  const val = p[field] || "";
+  return `
+    <div class="field-group">
+      <label class="field-label">${label}</label>
+      <input class="field-input" type="${type}" value="${esc(val)}" placeholder="${placeholder||''}" onblur="updateProject('${p.id}', pr=>({${field}:this.value}))" />
+    </div>
+  `;
+}
+
+// ---------- Modals ----------
+function renderModal() {
+  if (!state.modal) return "";
+  if (state.modal === "addProject") return renderAddProjectModal();
+  if (state.modal === "installment") return renderInstallmentModal();
+  if (state.modal === "decision") return renderDecisionModal();
+  return "";
+}
+
+function renderAddProjectModal() {
+  return `
+    <div class="modal-overlay" onclick="closeModalIfOutside(event)">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-head"><span class="modal-title">新增專案</span><button onclick="setState({modal:null})">${ICON.x}</button></div>
+        <div class="field-group"><label class="field-label">專案名稱</label><input class="field-input" id="f_name" placeholder="例：TECOM資料庫合作案" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <div class="field-group"><label class="field-label">聯繫廠商（人員）</label><input class="field-input" id="f_contact" placeholder="例：吳密察教授" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <div class="field-group"><label class="field-label">合作機構</label><input class="field-input" id="f_org" placeholder="例：國立史前博物館" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <div class="field-group"><label class="field-label">經費</label><input class="field-input" id="f_budget" type="number" placeholder="例：450000" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <div class="field-group"><label class="field-label">期限</label><input class="field-input" id="f_end" type="date" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <button class="primary-btn" style="background:var(--accent)" onclick="submitAddProject()">新增專案</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderInstallmentModal() {
+  const p = getProject(state.view.id);
+  const inst = p.installments || [];
+  const remaining = Number(p.budget||0) - inst.reduce((s,i)=>s+Number(i.amount||0),0);
+  const hasRemaining = Number(p.budget||0) > 0;
+  return `
+    <div class="modal-overlay" onclick="closeModalIfOutside(event)">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-head"><span class="modal-title">新增期別</span><button onclick="setState({modal:null})">${ICON.x}</button></div>
+        ${hasRemaining ? `<div class="helper-box" style="background:${remaining>=0?'#F1EDE3':'#FBEAE7'};color:${remaining>=0?'var(--muted)':'var(--red)'}">${remaining>=0?`尚可分配 $${fmtMoney(remaining)}`:`已超出經費 $${fmtMoney(Math.abs(remaining))}`}</div>` : ""}
+        <div class="field-group"><label class="field-label">金額</label><input class="field-input" id="f_inst_amount" type="number" placeholder="例：150000" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;" /></div>
+        <button class="primary-btn" style="background:var(--accent)" onclick="submitAddInstallment()">新增</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderDecisionModal() {
+  return `
+    <div class="modal-overlay" onclick="closeModalIfOutside(event)">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-head"><span class="modal-title">新增決策記錄</span><button onclick="setState({modal:null})">${ICON.x}</button></div>
+        <div class="field-group"><label class="field-label">問題描述</label><textarea class="field-input" id="f_dec_problem" rows="2" placeholder="發生了什麼問題？" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;"></textarea></div>
+        <div class="field-group">
+          <label class="field-label">考慮方案</label>
+          <div id="optionsContainer">
+            ${state.decisionOptions.map((o,idx)=>`
+              <div class="option-row">
+                <span class="option-letter">${o.label}</span>
+                <input class="option-input" value="${esc(o.text)}" placeholder="方案 ${o.label} 內容" oninput="state.decisionOptions[${idx}].text=this.value" />
+              </div>
+            `).join("")}
+          </div>
+          <button class="link-btn" onclick="addDecisionOption()">${ICON.plus} 新增方案</button>
+        </div>
+        <div class="field-group">
+          <label class="field-label">最後選擇</label>
+          <select class="select-input" id="f_dec_selected">
+            <option value="">請選擇</option>
+            ${state.decisionOptions.map(o=>`<option value="${o.label}">${o.label}</option>`).join("")}
+          </select>
+        </div>
+        <div class="field-group"><label class="field-label">理由</label><textarea class="field-input" id="f_dec_reason" rows="2" placeholder="為什麼選這個方案？" style="border:1px solid var(--border);border-radius:12px;padding:8px 12px;"></textarea></div>
+        <button class="primary-btn" style="background:var(--accent)" onclick="submitAddDecision()">儲存記錄</button>
+      </div>
+    </div>
+  `;
+}
+
+function closeModalIfOutside(e) { if (e.target.classList.contains('modal-overlay')) setState({ modal: null }); }
+
+// ---------- Actions ----------
+function openProject(id) { setState({ view: { screen: "detail", id }, confirmDelete: false, summaryCopied: false }); }
+
+function toggleSection(key) { state.openSections[key] = !state.openSections[key]; render(); }
+
+function submitAddProject() {
+  const name = document.getElementById("f_name").value.trim();
+  if (!name) return;
+  const proj = {
+    id: uid(), name,
+    status: "進行中",
+    contact: document.getElementById("f_contact").value,
+    organization: document.getElementById("f_org").value,
+    docNumber: "",
+    budget: document.getElementById("f_budget").value,
+    assignDate: "", scheduleStart: "",
+    scheduleEnd: document.getElementById("f_end").value,
+    nextActions: [], installments: [], decisions: [],
+    lastUpdated: todayISO(),
+  };
+  state.projects = [proj, ...state.projects];
+  persist();
+  setState({ modal: null });
+}
+
+function deleteProject(id) {
+  state.projects = state.projects.filter(p => p.id !== id);
+  persist();
+  setState({ view: { screen: "list" } });
+}
+
+function addNextAction(id) {
+  const input = document.getElementById("newActionInput");
+  const text = (input ? input.value : state.newActionDraft).trim();
+  if (!text) return;
+  updateProject(id, p => ({ nextActions: [...(p.nextActions||[]), { id: uid(), text, done: false }] }));
+  state.newActionDraft = "";
+}
+function toggleNextAction(pid, aid) {
+  updateProject(pid, p => ({ nextActions: (p.nextActions||[]).map(a => a.id===aid ? {...a, done: !a.done} : a) }));
+}
+function removeNextAction(pid, aid) {
+  updateProject(pid, p => ({ nextActions: (p.nextActions||[]).filter(a => a.id!==aid) }));
+}
+
+function submitAddInstallment() {
+  const amount = document.getElementById("f_inst_amount").value;
+  if (!amount || Number(amount) <= 0) return;
+  const pid = state.view.id;
+  updateProject(pid, p => ({ installments: [...(p.installments||[]), { id: uid(), amount, status: "未開始" }] }));
+  setState({ modal: null });
+}
+function updateInstallmentStatus(pid, iid, status) {
+  updateProject(pid, p => ({ installments: (p.installments||[]).map(i => i.id===iid ? {...i, status} : i) }));
+}
+function removeInstallment(pid, iid) {
+  updateProject(pid, p => ({ installments: (p.installments||[]).filter(i => i.id!==iid) }));
+}
+
+function openDecisionModal() { state.decisionOptions = [{ label: "A", text: "" }]; setState({ modal: "decision" }); }
+function addDecisionOption() {
+  const nextLabel = String.fromCharCode(65 + state.decisionOptions.length);
+  state.decisionOptions.push({ label: nextLabel, text: "" });
+  render();
+}
+function submitAddDecision() {
+  const problem = document.getElementById("f_dec_problem").value.trim();
+  if (!problem) return;
+  const selected = document.getElementById("f_dec_selected").value;
+  const reason = document.getElementById("f_dec_reason").value;
+  const options = state.decisionOptions.filter(o => o.text.trim());
+  const pid = state.view.id;
+  updateProject(pid, p => ({ decisions: [{ id: uid(), date: todayISO(), problem, options, selected, reason }, ...(p.decisions||[])] }));
+  setState({ modal: null });
+}
+function removeDecision(pid, did) {
+  updateProject(pid, p => ({ decisions: (p.decisions||[]).filter(d => d.id!==did) }));
+}
+
+async function copySummary(pid) {
+  const p = getProject(pid);
+  const text = buildReportSummary(p);
+  try { await navigator.clipboard.writeText(text); } catch(e) { fallbackCopy(text); }
+  setState({ summaryCopied: true });
+  setTimeout(() => setState({ summaryCopied: false }), 1500);
+}
+
+async function copyMeetingReport() {
+  const active = state.projects.filter(p => p.status !== "已完成");
+  const lines = active.map((p, idx) => {
+    const inst = p.installments || [];
+    const paid = inst.filter(i=>i.status==="已付款").length;
+    const pending = (p.nextActions||[]).filter(a=>!a.done);
+    const decisions = p.decisions || [];
+    const latest = decisions.length ? [...decisions].sort((a,b)=>(a.date<b.date?1:-1))[0] : null;
+    const parts = [`${idx+1}. ${p.name}（${p.status}）`];
+    if (inst.length) parts.push(`　履約進度：${paid}/${inst.length} 期已付款`);
+    if (pending.length) parts.push(`　下一步：${pending.map(a=>a.text).join("、")}`);
+    if ((p.status==="卡關"||p.status==="等待回覆") && latest) parts.push(`　目前狀況：${latest.problem}${latest.selected?`（採方案${latest.selected}處理中）`:""}`);
+    return parts.join("\n");
+  });
+  const header = `專案進度報告（${todayISO()}）\n共 ${active.length} 件進行中\n\n`;
+  const text = header + lines.join("\n\n");
+  try { await navigator.clipboard.writeText(text); } catch(e) { fallbackCopy(text); }
+  setState({ reportCopied: true });
+  setTimeout(() => setState({ reportCopied: false }), 2000);
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+async function shareApp() {
+  const shareData = {
+    title: document.title,
+    text: "專案進度追蹤：管理待辦、履約進度與決策記錄",
+    url: window.location.href,
+  };
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (error) {
+      if (error && error.name === "AbortError") return;
+    }
+  }
+  try { await navigator.clipboard.writeText(window.location.href); }
+  catch (error) { fallbackCopy(window.location.href); }
+  setState({ shareCopied: true });
+  setTimeout(() => setState({ shareCopied: false }), 1800);
+}
+
+function exportProjects() {
+  const payload = {
+    app: "project-tracker",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    projects: state.projects,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `專案追蹤備份-${todayISO()}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function importProjects(event) {
+  const input = event.target;
+  const file = input.files && input.files[0];
+  if (!file) return;
+  try {
+    const parsed = JSON.parse(await file.text());
+    const projects = Array.isArray(parsed) ? parsed : parsed.projects;
+    if (!Array.isArray(projects)) throw new Error("格式不正確");
+    const shouldReplace = state.projects.length === 0 || window.confirm(`將以備份中的 ${projects.length} 個專案取代目前資料，是否繼續？`);
+    if (!shouldReplace) return;
+    state.projects = projects;
+    persist();
+    setState({ view: { screen: "list" }, modal: null, query: "", statusFilter: "全部" });
+    window.alert(`已匯入 ${projects.length} 個專案。`);
+  } catch (error) {
+    window.alert("無法匯入：請選擇由本工具匯出的 JSON 備份檔。");
+  } finally {
+    input.value = "";
+  }
+}
+
+// expose to global for inline handlers
+window.setState = setState;
+window.updateProject = updateProject;
+window.openProject = openProject;
+window.toggleSection = toggleSection;
+window.submitAddProject = submitAddProject;
+window.deleteProject = deleteProject;
+window.addNextAction = addNextAction;
+window.toggleNextAction = toggleNextAction;
+window.removeNextAction = removeNextAction;
+window.submitAddInstallment = submitAddInstallment;
+window.updateInstallmentStatus = updateInstallmentStatus;
+window.removeInstallment = removeInstallment;
+window.openDecisionModal = openDecisionModal;
+window.addDecisionOption = addDecisionOption;
+window.submitAddDecision = submitAddDecision;
+window.removeDecision = removeDecision;
+window.copySummary = copySummary;
+window.copyMeetingReport = copyMeetingReport;
+window.shareApp = shareApp;
+window.exportProjects = exportProjects;
+window.importProjects = importProjects;
+window.closeModalIfOutside = closeModalIfOutside;
+window.state = state;
+
+// ---------- Main render ----------
+function render() {
+  const app = document.getElementById("app");
+  let html = "";
+  if (state.view.screen === "list") html = renderListScreen();
+  else if (state.view.screen === "detail") {
+    const p = getProject(state.view.id);
+    html = p ? renderDetailScreen(p) : renderListScreen();
+  }
+  html += renderModal();
+  app.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
