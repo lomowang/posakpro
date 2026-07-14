@@ -10,6 +10,33 @@ import { projects } from "@/lib/works";
 import Reveal from "@/components/Reveal";
 
 function WorkCardTitle({ project }) {
+  if (project.slug === "UnlitHouse") {
+    return (
+      <>
+        <span className="block sm:whitespace-nowrap">Within the</span>
+        <span className="block sm:whitespace-nowrap">Unlit House</span>
+      </>
+    );
+  }
+
+  if (project.slug === "FriendFromAfar") {
+    return (
+      <>
+        <span className="block sm:whitespace-nowrap">Misafafahiyan -</span>
+        <span className="block sm:whitespace-nowrap">Teman dari Jauh</span>
+      </>
+    );
+  }
+
+  if (project.slug === "WhiteDeer") {
+    return (
+      <>
+        <span className="block sm:whitespace-nowrap">There is a white deer</span>
+        <span className="block sm:whitespace-nowrap">in the mountain</span>
+      </>
+    );
+  }
+
   if (project.slug === "Simpleriver") {
     return (
       <>
@@ -47,7 +74,7 @@ export function WorkHeroPage() {
       <Reveal>
         <div className="mb-14 flex items-end justify-between border-b border-black/25 pb-5">
           <h2 className="story-display text-[15vw] leading-none sm:text-5xl md:text-7xl">All works</h2>
-          <span className="text-[10px] uppercase tracking-[0.3em]">2018 — 2022</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">2018 — 2026</span>
         </div>
       </Reveal>
       <div className="grid gap-12 md:grid-cols-3 md:gap-5">
@@ -74,7 +101,7 @@ export function WorkDetailPage({ slug }) {
     <header className="border-b border-black/20 pb-10 pt-14 md:pb-16 md:pt-24"><div className="mb-10 flex justify-between text-[10px] uppercase tracking-[0.3em] md:mb-12"><span>{project.number} / Selected work</span><span>{project.year}</span></div><div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:items-end lg:grid-cols-[minmax(0,1fr)_22rem]"><h1 className="story-display max-w-6xl break-words text-[13vw] leading-[0.9] md:text-[6vw] md:leading-[0.88] lg:text-[6.8vw] xl:text-[7.2rem]">{project.title}</h1><div className="relative z-10 border-t border-black/25 bg-white pt-4 text-xs uppercase leading-7 tracking-[0.2em]"><p>POSAK JODIAN</p><p>{project.medium}</p><p>{project.duration}</p><p>Taiwan · {project.year}</p></div></div></header>
     <div className="relative mt-8 h-[48svh] min-h-[280px] max-h-[760px] overflow-hidden bg-black/5 md:mt-16 md:h-[62svh] md:min-h-[420px] lg:h-[72svh] lg:min-h-[480px]"><Image src={project.hero} alt={project.title} fill priority className="object-cover" sizes="100vw" /></div>
     <section className="grid gap-10 border-b border-black/20 py-16 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-12 md:py-24 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-16 lg:py-28"><Reveal><p className="text-[10px] uppercase tracking-[0.3em]">About the work</p><p className="mt-5 text-sm leading-relaxed text-black/55">{project.year}<br />{project.medium}<br />{project.duration}</p></Reveal><Reveal delay={0.1}><div className="max-w-4xl space-y-7 text-base leading-[1.78] md:text-xl md:leading-[1.65] lg:text-[1.7rem] lg:leading-[1.58]">{project.statement.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></Reveal></section>
-    <section className="py-14 md:py-28"><Reveal><div className="mb-10 flex justify-between border-b border-black/20 pb-5 text-[10px] uppercase tracking-[0.3em] md:mb-12"><span>Stills / Documentation</span><span>{String(project.gallery.length).padStart(2, "0")} images</span></div></Reveal><div className="space-y-8 md:space-y-20">{project.gallery.slice(1).map((src, imageIndex) => <Reveal key={src}><figure className={imageIndex % 3 === 1 ? "md:ml-auto md:w-[68%]" : imageIndex % 3 === 2 ? "md:w-[58%]" : "w-full"}><div className="relative aspect-[16/10] overflow-hidden bg-black/5"><Image src={src} alt={`${project.title}, still ${imageIndex + 2}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 75vw" /></div><figcaption className="mt-3 text-[9px] uppercase tracking-[0.25em] text-black/45">{project.title} · Still {String(imageIndex + 2).padStart(2, "0")}</figcaption></figure></Reveal>)}</div></section>
+    <section className="py-14 md:py-28"><Reveal><div className="mb-10 flex justify-between border-b border-black/20 pb-5 text-[10px] uppercase tracking-[0.3em] md:mb-12"><span>Images / Documentation</span><span>{String(project.gallery.length).padStart(2, "0")} images</span></div></Reveal><div className="space-y-8 md:space-y-20">{project.gallery.slice(1).map((src, imageIndex) => <Reveal key={src}><figure className={imageIndex % 3 === 1 ? "md:ml-auto md:w-[68%]" : imageIndex % 3 === 2 ? "md:w-[58%]" : "w-full"}><div className="relative aspect-[16/10] overflow-hidden bg-black/5"><Image src={src} alt={`${project.title} documentation ${imageIndex + 2}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 75vw" /></div>{project.imageCredit ? <figcaption className="mt-3 text-[9px] uppercase leading-5 tracking-[0.18em] text-black/45">{project.imageCredit.map((line) => <span className="mr-4 inline-block" key={line}>{line}</span>)}</figcaption> : null}</figure></Reveal>)}</div></section>
     <nav className="grid border-y border-black/20 md:grid-cols-2"><Link href={previous.href} className="group border-b border-black/20 py-10 md:border-b-0 md:border-r md:pr-10"><span className="text-[10px] uppercase tracking-[0.3em] text-black/50">← Previous work</span><p className="story-display mt-4 break-words text-3xl transition-opacity group-hover:opacity-50 md:text-4xl lg:text-5xl">{previous.title}</p></Link><Link href={next.href} className="group py-10 text-left md:pl-10 md:text-right"><span className="text-[10px] uppercase tracking-[0.3em] text-black/50">Next work →</span><p className="story-display mt-4 break-words text-3xl transition-opacity group-hover:opacity-50 md:text-4xl lg:text-5xl">{next.title}</p></Link></nav>
   </div></main>;
 }

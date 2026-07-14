@@ -85,10 +85,14 @@ div.swiper-button-next {
 .work-hero-swiper .swiper-button-prev { left: 24px; }
 .work-hero-swiper .swiper-button-next { right: 24px; }
 
+.work-hero-swiper .swiper-slide a > div[class*="bottom-0"][class*="text-white"] {
+  padding-bottom: 5rem;
+}
+
 .work-hero-swiper .swiper-pagination-fraction {
   left: auto;
   right: 40px;
-  bottom: 26px;
+  bottom: 56px;
   width: auto;
   color: #fff;
   font-size: 10px;
@@ -101,7 +105,10 @@ div.swiper-button-next {
   .work-hero-swiper .swiper-button-next { width: 42px; height: 42px; top: 42%; }
   .work-hero-swiper .swiper-button-prev { left: 12px; }
   .work-hero-swiper .swiper-button-next { right: 12px; }
-  .work-hero-swiper .swiper-pagination-fraction { right: 18px; bottom: 20px; }
+  .work-hero-swiper .swiper-slide a > div[class*="bottom-0"][class*="text-white"] {
+    padding-bottom: 5.5rem;
+  }
+  .work-hero-swiper .swiper-pagination-fraction { right: 18px; bottom: 52px; }
 }
 
 div.swiper-button-prev::after,
