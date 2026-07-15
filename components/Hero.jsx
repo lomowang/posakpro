@@ -9,6 +9,7 @@ const works = projects.map((project) => ({
   title: project.title,
   year: project.year,
   image: project.hero,
+  imagePosition: project.heroPosition,
   href: project.href,
 }));
 
@@ -169,7 +170,15 @@ export default function Hero() {
                   <span className="text-xs tracking-[0.35em] text-black/50">0{index + 1}</span>
                   <div>
                     <div className="relative aspect-[16/9] overflow-hidden bg-black/5">
-                      <Image src={work.image} alt={work.title} fill quality={68} className="object-cover transition duration-700 ease-out group-hover:scale-[1.025] group-hover:opacity-80" sizes="(max-width: 768px) 100vw, 85vw" />
+                      <Image
+                        src={work.image}
+                        alt={work.title}
+                        fill
+                        quality={68}
+                        className="object-cover transition duration-700 ease-out group-hover:scale-[1.025] group-hover:opacity-80"
+                        style={{ objectPosition: work.imagePosition || "center" }}
+                        sizes="(max-width: 768px) 100vw, 85vw"
+                      />
                     </div>
                     <div className="mt-5 flex items-start justify-between gap-4">
                       <h3 className="story-display min-w-0 text-3xl leading-none sm:text-4xl md:text-5xl lg:text-6xl">{work.title}</h3>
