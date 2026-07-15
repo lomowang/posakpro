@@ -95,6 +95,7 @@ export function WorkHeroPage() {
                   alt={project.title}
                   fill
                   priority={project.number === "01"}
+                  quality={68}
                   className="object-cover opacity-90 transition duration-1000 group-hover:scale-[1.015] group-hover:opacity-75"
                   sizes="100vw"
                 />
@@ -137,6 +138,7 @@ export function WorkHeroPage() {
                       src={project.hero}
                       alt={project.title}
                       fill
+                      quality={68}
                       className="object-cover transition duration-700 group-hover:scale-[1.025]"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
@@ -202,7 +204,7 @@ export function WorkDetailPage({ slug }) {
         </header>
 
         <div className="relative mt-8 h-[48svh] min-h-[280px] max-h-[760px] overflow-hidden bg-black/5 md:mt-16 md:h-[62svh] md:min-h-[420px] lg:h-[72svh] lg:min-h-[480px]">
-          <Image src={project.hero} alt={project.title} fill priority className="object-cover" sizes="100vw" />
+          <Image src={project.hero} alt={project.title} fill priority quality={70} className="object-cover" sizes="100vw" />
         </div>
         {shouldShowImageCredit(project, project.hero) ? (
           <div className="mt-3 text-[9px] uppercase leading-5 tracking-[0.18em] text-black/45">
@@ -252,6 +254,7 @@ export function WorkDetailPage({ slug }) {
                       src={src}
                       alt={`${project.title} documentation ${imageIndex + 2}`}
                       fill
+                      quality={68}
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 75vw"
                     />
